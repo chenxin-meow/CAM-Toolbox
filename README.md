@@ -1,5 +1,5 @@
 # CAM-Toolbox
-Common Methods in Computational and Applied Mathematics
+General techniques in Computational and Applied Mathematics
 
 ## Topics
 
