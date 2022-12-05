@@ -1,5 +1,5 @@
-# CAM-Toolbox
-General techniques in Computational and Applied Mathematics
+# Numerical Methods
+General numerical methods in computational and applied mathematics
 
 ## Topics
 
