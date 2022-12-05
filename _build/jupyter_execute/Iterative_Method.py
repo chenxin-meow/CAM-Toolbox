@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # A general framework of Iterative Method
+# # Iterative Methods for Linear Systems
+
+# ## A general framework of Iterative Methods
 # 
 # Goal: Solve a large linear system
 # 
@@ -40,8 +42,8 @@
 # We always choose an invertible $N$, therefore
 # 
 # $$
-# \vec{x}^{k+1}=N^{-1}P\vec{x}^k+N^{-1}\vec{f}.\tag{1}
-# $$
+# \vec{x}^{k+1}=N^{-1}P\vec{x}^k+N^{-1}\vec{f}.
+# $$(eqn:1)
 # 
 # Obviously, if the sequence $\{\vec x^k\}_{k=0}^{\infty}$ converges, it converges to $\vec{x}^*$, the analytic solution of $A\vec{x}=\vec{f}$.
 
@@ -118,7 +120,15 @@
 
 # ### Theorem 1 (Gershgorin Circle Theorem)
 # 
-# Given a matrix $A=(a_{ij})_{1\leq i,j\leq n}\in M_{n\times n}(\mathbb C)$, we consider an eigenvector $\vec e=(e_1,\cdots,e_n)^T$ with eigenvalue $\lambda$. Then $A\vec e=\lambda \vec e$.
+# Given a matrix $A=(a_{ij})_{1\leq i,j\leq n}\in M_{n\times n}(\mathbb C)$, we consider an eigenvector $\vec e=(e_1,\cdots,e_n)^T$ with eigenvalue $\lambda$. Let $l$ be the index such that $e_l$ is the largest in magnitude of $\vec e$, i.e. $\mid e_l\mid \geq \mid e_j\mid$ for all $j$. Then
+# 
+# $$
+# \lambda\in \overline{B_{a_{ll}}(\sum_{j=1,j\neq l}^n \mid a_{lj}\mid)}.
+# $$
+# 
+# 
+# 
+# Then $A\vec e=\lambda \vec e$.
 # 
 # For each $1\leq i\leq n$, the $i$-th entry of $A\vec e=\lambda \vec e$ is
 # 
@@ -137,7 +147,7 @@
 # \begin{align*}
 # &\mid a_{ll}-\lambda\mid \cdot \mid e_l \mid \leq \sum_{j=1,j\neq l}^n \mid a_{lj}\mid \cdot \mid e_j\mid \leq \sum_{j=1,j\neq l}^n \mid a_{lj}\mid \cdot \mid e_l\mid\\
 # &⇒ \mid a_{ll}-\lambda\mid \leq \sum_{j=1,j\neq l}^n \mid a_{lj}\mid\\
-# &⇒ \lambda\in \overline{B_{a_{ll}}(\sum_{j=1,j\neq l}^n \mid a_{lj}\mid)}\tag{6}
+# &⇒ \lambda\in \overline{B_{a_{ll}}(\sum_{j=1,j\neq l}^n \mid a_{lj}\mid)}
 # \end{align*}
 # $$
 # 
@@ -159,14 +169,24 @@
 # 
 # ### Strictly Dominant Diagonal (SDD) Matrix
 # 
-# > A matrix $A=(a_{ij})_{1\leq i,j\leq n}\in M_{n\times n}(\mathbb C)$ is strictly dominant diagonal (SDD) if
+# ````{prf:definition} SDD Matrix
+# :label: def_SDD
+# 
+# A matrix $A=(a_{ij})_{1\leq i,j\leq n}\in M_{n\times n}(\mathbb C)$ is strictly dominant diagonal (SDD) if
 # $$
 # \mid a_{ii}\mid  > \sum_{j=1,j\neq i}^n \mid a_{ij}\mid ,\qquad \forall i=1,\cdots,n.
 # $$
 # 
+# ````
 # 
+# 
+# ````{prf:theorem}
+# :label: thm_SDD
 # Obviously, an SDD matrix $A$ must be non-singular. A quick proof is as follows.
+# ````
 # 
+# ````{prf:proof}
+# :label: pf_SDD
 # By Theorem 1, all eigenvalues of $A$ satisfy
 # 
 # $$
@@ -175,7 +195,9 @@
 # 
 # Therefore, every ball $\overline{B_{a_{ii}}(\sum_{j=1,j\neq i}^n \mid a_{ij}\mid)}$ must NOT touch 0, which implies that NO eigenvalue is 0. So $A$ is non-singular.
 # 
-# SDD helps us to study the convergence of iterative method in some situation. We will discuss it later. Now let's introduce some concrete algorithms which utilize iterative method.
+# ````
+# 
+# SDD helps us to study the convergence of iterative method in some situation. We will discuss it later. Now let's introduce some concrete algorithms which utilize iterative methods.
 
 # # Different splitting methods
 # 

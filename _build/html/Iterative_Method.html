@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>A general framework of Iterative Method &#8212; Numerical Methods</title>
+    <title>Iterative Methods for Linear Systems &#8212; Numerical Methods</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -124,7 +124,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   A general framework of Iterative Method
+   Iterative Methods for Linear Systems
   </a>
  </li>
 </ul>
@@ -306,9 +306,14 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   A general framework of Iterative Method
+   Iterative Methods for Linear Systems
   </a>
   <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-general-framework-of-iterative-methods">
+     A general framework of Iterative Methods
+    </a>
+   </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#convergence-of-m-k">
      Convergence of
@@ -478,7 +483,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>A general framework of Iterative Method</h1>
+                <h1>Iterative Methods for Linear Systems</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -490,9 +495,14 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   A general framework of Iterative Method
+   Iterative Methods for Linear Systems
   </a>
   <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-general-framework-of-iterative-methods">
+     A general framework of Iterative Methods
+    </a>
+   </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#convergence-of-m-k">
      Convergence of
@@ -663,8 +673,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="a-general-framework-of-iterative-method">
-<h1>A general framework of Iterative Method<a class="headerlink" href="#a-general-framework-of-iterative-method" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="iterative-methods-for-linear-systems">
+<h1>Iterative Methods for Linear Systems<a class="headerlink" href="#iterative-methods-for-linear-systems" title="Permalink to this headline">#</a></h1>
+<section id="a-general-framework-of-iterative-methods">
+<h2>A general framework of Iterative Methods<a class="headerlink" href="#a-general-framework-of-iterative-methods" title="Permalink to this headline">#</a></h2>
 <p>Goal: Solve a large linear system</p>
 <div class="math notranslate nohighlight">
 \[
@@ -693,9 +705,9 @@ A\vec{x}=\vec{f} \iff (N-P)\vec{x}=\vec{f} \iff N\vec{x}=P\vec{x}+\vec{f}.
 N\vec{x}^{k+1}=P\vec{x}^k+\vec{f}.
 \]</div>
 <p>We always choose an invertible <span class="math notranslate nohighlight">\(N\)</span>, therefore</p>
-<div class="math notranslate nohighlight">
-\[
-\vec{x}^{k+1}=N^{-1}P\vec{x}^k+N^{-1}\vec{f}.\tag{1}
+<div class="math notranslate nohighlight" id="equation-eqn-1">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eqn-1" title="Permalink to this equation">#</a></span>\[
+\vec{x}^{k+1}=N^{-1}P\vec{x}^k+N^{-1}\vec{f}.
 \]</div>
 <p>Obviously, if the sequence <span class="math notranslate nohighlight">\(\{\vec x^k\}_{k=0}^{\infty}\)</span> converges, it converges to <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>, the analytic solution of <span class="math notranslate nohighlight">\(A\vec{x}=\vec{f}\)</span>.</p>
 <p>To ensure the convergence, we study the error sequence <span class="math notranslate nohighlight">\(\{\vec e^k\}_{k=0}^{\infty}\)</span> where</p>
@@ -717,6 +729,7 @@ N\vec{x}^{k+1}=P\vec{x}^k+\vec{f}.
 \vec{e}^{k+1}=M\vec{e}^k=\cdots=M^k\vec{e}^0\tag{4}.
 \]</div>
 <p>Since <span class="math notranslate nohighlight">\(\vec{e}^0\)</span> is an arbitrary number depending on the intial value of the iterative scheme, the convergence of <span class="math notranslate nohighlight">\((4)\)</span> is determined by <span class="math notranslate nohighlight">\(M^k\)</span>. If <span class="math notranslate nohighlight">\(M^k\)</span> converges to <span class="math notranslate nohighlight">\(0\)</span> as <span class="math notranslate nohighlight">\(k\)</span> goes to infinity, then the error sequence will converge to <span class="math notranslate nohighlight">\(0\)</span> as well.</p>
+</section>
 <section id="convergence-of-m-k">
 <h2>Convergence of <span class="math notranslate nohighlight">\(M^k\)</span><a class="headerlink" href="#convergence-of-m-k" title="Permalink to this headline">#</a></h2>
 <p><strong>Question</strong>: Will <span class="math notranslate nohighlight">\(M^k\)</span> converge to <span class="math notranslate nohighlight">\(0\)</span>?</p>
@@ -757,7 +770,12 @@ M\vec u_i=\lambda_i \vec u_i\qquad\forall i=1,\cdots,n.
 <p>We know that the spectral radius <span class="math notranslate nohighlight">\(\rho(M)\)</span> is so important, but how can we determine <span class="math notranslate nohighlight">\(\rho(M)&lt;1\)</span> or not? One can always compute all the eigenvalues by brute force and pick the largest one. One can also use more sophiscated method (e.g.: Power method, QR method) to find the largest eigenvalue in maginitude – we will discuss it in the next chapter. Alternatively, we do have other way to determine the range of <span class="math notranslate nohighlight">\(\rho(M)=\mid\lambda_1\mid\)</span>. By the following theorem, we cannot identify the exact value of <span class="math notranslate nohighlight">\(\rho(M)\)</span>, but we can find an upper bound of it, which will also be helpful to our convergence analysis in some cases.</p>
 <section id="theorem-1-gershgorin-circle-theorem">
 <h3>Theorem 1 (Gershgorin Circle Theorem)<a class="headerlink" href="#theorem-1-gershgorin-circle-theorem" title="Permalink to this headline">#</a></h3>
-<p>Given a matrix <span class="math notranslate nohighlight">\(A=(a_{ij})_{1\leq i,j\leq n}\in M_{n\times n}(\mathbb C)\)</span>, we consider an eigenvector <span class="math notranslate nohighlight">\(\vec e=(e_1,\cdots,e_n)^T\)</span> with eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span>. Then <span class="math notranslate nohighlight">\(A\vec e=\lambda \vec e\)</span>.</p>
+<p>Given a matrix <span class="math notranslate nohighlight">\(A=(a_{ij})_{1\leq i,j\leq n}\in M_{n\times n}(\mathbb C)\)</span>, we consider an eigenvector <span class="math notranslate nohighlight">\(\vec e=(e_1,\cdots,e_n)^T\)</span> with eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span>. Let <span class="math notranslate nohighlight">\(l\)</span> be the index such that <span class="math notranslate nohighlight">\(e_l\)</span> is the largest in magnitude of <span class="math notranslate nohighlight">\(\vec e\)</span>, i.e. <span class="math notranslate nohighlight">\(\mid e_l\mid \geq \mid e_j\mid\)</span> for all <span class="math notranslate nohighlight">\(j\)</span>. Then</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda\in \overline{B_{a_{ll}}(\sum_{j=1,j\neq l}^n \mid a_{lj}\mid)}.
+\]</div>
+<p>Then <span class="math notranslate nohighlight">\(A\vec e=\lambda \vec e\)</span>.</p>
 <p>For each <span class="math notranslate nohighlight">\(1\leq i\leq n\)</span>, the <span class="math notranslate nohighlight">\(i\)</span>-th entry of <span class="math notranslate nohighlight">\(A\vec e=\lambda \vec e\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -774,7 +792,7 @@ M\vec u_i=\lambda_i \vec u_i\qquad\forall i=1,\cdots,n.
 \begin{align*}
 &amp;\mid a_{ll}-\lambda\mid \cdot \mid e_l \mid \leq \sum_{j=1,j\neq l}^n \mid a_{lj}\mid \cdot \mid e_j\mid \leq \sum_{j=1,j\neq l}^n \mid a_{lj}\mid \cdot \mid e_l\mid\\
 &amp;⇒ \mid a_{ll}-\lambda\mid \leq \sum_{j=1,j\neq l}^n \mid a_{lj}\mid\\
-&amp;⇒ \lambda\in \overline{B_{a_{ll}}(\sum_{j=1,j\neq l}^n \mid a_{lj}\mid)}\tag{6}
+&amp;⇒ \lambda\in \overline{B_{a_{ll}}(\sum_{j=1,j\neq l}^n \mid a_{lj}\mid)}
 \end{align*}
 \end{split}\]</div>
 <p>From above we know that <span class="math notranslate nohighlight">\(\lambda\)</span> lies in a ball of center <span class="math notranslate nohighlight">\(a_{ll}\)</span>, radius <span class="math notranslate nohighlight">\(\sum_{j=1,j\neq l}^n \mid a_{lj}\mid\)</span>. It seems that we are done in finding the bound of <span class="math notranslate nohighlight">\(\lambda\)</span>, but we are not. Note that if we have already known <span class="math notranslate nohighlight">\(l\)</span>, we can determine the ball by looking into the <span class="math notranslate nohighlight">\(l\)</span>-th row of <span class="math notranslate nohighlight">\(A\)</span>, then the bound of <span class="math notranslate nohighlight">\(\lambda\)</span> is found. However, the problem is that we do NOT know <span class="math notranslate nohighlight">\(l\)</span>. To find <span class="math notranslate nohighlight">\(l\)</span>, we should</p>
@@ -792,20 +810,20 @@ M\vec u_i=\lambda_i \vec u_i\qquad\forall i=1,\cdots,n.
 </section>
 <section id="strictly-dominant-diagonal-sdd-matrix">
 <h3>Strictly Dominant Diagonal (SDD) Matrix<a class="headerlink" href="#strictly-dominant-diagonal-sdd-matrix" title="Permalink to this headline">#</a></h3>
-<blockquote>
-<div><p>A matrix <span class="math notranslate nohighlight">\(A=(a_{ij})_{1\leq i,j\leq n}\in M_{n\times n}(\mathbb C)\)</span> is strictly dominant diagonal (SDD) if
+<div class="proof definition admonition" id="def_SDD">
+<p class="admonition-title"><span class="caption-number">Definition 1 </span> (SDD Matrix)</p>
+<section class="definition-content" id="proof-content">
+<p>A matrix <span class="math notranslate nohighlight">\(A=(a_{ij})_{1\leq i,j\leq n}\in M_{n\times n}(\mathbb C)\)</span> is strictly dominant diagonal (SDD) if
 $<span class="math notranslate nohighlight">\(
 \mid a_{ii}\mid  &gt; \sum_{j=1,j\neq i}^n \mid a_{ij}\mid ,\qquad \forall i=1,\cdots,n.
 \)</span>$</p>
-</div></blockquote>
+</section>
+</div><div class="proof theorem admonition" id="thm_SDD">
+<p class="admonition-title"><span class="caption-number">Theorem 1 </span></p>
+<section class="theorem-content" id="proof-content">
 <p>Obviously, an SDD matrix <span class="math notranslate nohighlight">\(A\)</span> must be non-singular. A quick proof is as follows.</p>
-<p>By Theorem 1, all eigenvalues of <span class="math notranslate nohighlight">\(A\)</span> satisfy</p>
-<div class="math notranslate nohighlight">
-\[
-\lambda\in  \bigcup_{i=1}^n \overline{B_{a_{ii}}(\sum_{j=1,j\neq i}^n \mid a_{ij}\mid)} \subset \bigcup_{i=1}^n \overline{B_{a_{ii}}(\mid a_{ii} \mid)}.
-\]</div>
-<p>Therefore, every ball <span class="math notranslate nohighlight">\(\overline{B_{a_{ii}}(\sum_{j=1,j\neq i}^n \mid a_{ij}\mid)}\)</span> must NOT touch 0, which implies that NO eigenvalue is 0. So <span class="math notranslate nohighlight">\(A\)</span> is non-singular.</p>
-<p>SDD helps us to study the convergence of iterative method in some situation. We will discuss it later. Now let’s introduce some concrete algorithms which utilize iterative method.</p>
+</section>
+</div><p>SDD helps us to study the convergence of iterative method in some situation. We will discuss it later. Now let’s introduce some concrete algorithms which utilize iterative methods.</p>
 </section>
 </section>
 </section>
