@@ -24,9 +24,9 @@ Numerical methods in computational and applied mathematics
 * Conjugate Gradient Method
   
 ### Eigenvalue Problems
-* Power method
+* Power Method
 * Rayleigh Quotient Iteration
-* QR method
+* QR Method
 * Simultaneous Iteration
 
 
