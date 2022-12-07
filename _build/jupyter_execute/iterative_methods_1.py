@@ -176,6 +176,7 @@
 # 
 # 
 # A matrix $A=(a_{ij})_{1\leq i,j\leq n}\in M_{n\times n}(\mathbb C)$ is strictly dominant diagonal (SDD) if
+# 
 # $$
 # \mid a_{ii}\mid  > \sum_{j=1,j\neq i}^n \mid a_{ij}\mid ,\qquad \forall i=1,\cdots,n.
 # $$
@@ -216,9 +217,11 @@
 # ### Jacobi Method
 # 
 # Jacobi Method is the simplest and the most intuitive. We choose 
+# 
 # $$
 # N=D,
 # $$
+# 
 # where matrix $D$ is a diagonal component of $A$.
 # 
 # Therefore, we split $A=N-P=D-(D-A)$, and get an iterative scheme as
@@ -372,6 +375,7 @@ pprint(sol_jacobi)
 # $$
 # 
 # By $(8)-(9)$, we have
+# 
 # $$
 # \begin{align*}
 # e_i^{n+1}&=-\frac{1}{a_{ii}}\sum_{j=1,j\neq i}^n a_{ij} e_j^n\\
@@ -521,6 +525,7 @@ pprint(sol_gaussSeidal)
 # $$
 # 
 # then we have 
+# 
 # $$
 # M=N^{-1}P=
 # \begin{pmatrix}
@@ -630,6 +635,7 @@ pprint(sol_gaussSeidal)
 # $$
 # 
 # Then $\vec y^{k+1}=\frac{1}{\omega}(\vec x^{k+1}+(\omega-1)\vec x^{k})$, and 
+# 
 # $$
 # \begin{align*}
 # &L\vec x^{k+1}+ \frac{1}{\omega}D\vec (\vec x^{k+1}+(\omega-1)\vec x^{k})+ U\vec x^{k} =\vec f\\
@@ -638,6 +644,7 @@ pprint(sol_gaussSeidal)
 # $$
 # 
 # Actually, SOR Method is similar to G-S method. We choose 
+# 
 # $$
 # N=L+\frac{1}{\omega}D.
 # $$
@@ -823,11 +830,16 @@ pprint(sol_SOR)
 # $$
 # 
 # Note that $\lambda\neq 0$, $det(D+\omega L)\neq 0$, so
+# 
 # $$
 # det(C)=det[(D+\omega L)-\frac{1}{\lambda}((1-\omega)D-\omega U)]=0.
 # $$
 # 
-# Since $\omega(1-\frac{1}{|\lambda|})\leq 1-\frac{1}{|\lambda|}$, we have $1-\frac{1}{|\lambda|}(1-\omega)\geq \omega \tag{15}$
+# Since $\omega(1-\frac{1}{|\lambda|})\leq 1-\frac{1}{|\lambda|}$, we have 
+# 
+# $$
+# 1-\frac{1}{|\lambda|}(1-\omega)\geq \omega \tag{15}
+# $$
 # 
 # We write $C=(c_{ij})$ and $A=(a_{ij})$, then for each $1\leq i\leq n$, the diagonal part
 # 
@@ -859,7 +871,8 @@ pprint(sol_SOR)
 # 
 # Examples of consistently ordered matrix:
 # 
-# * $$A=
+# $$
+# A=
 # \begin{pmatrix}
 # 10 & 1\\
 # 1 & 10\\
@@ -869,16 +882,22 @@ pprint(sol_SOR)
 # -\frac{\alpha}{10} & 0\\
 # \end{pmatrix}
 # $$
+# 
 # Char. poly: $\lambda^2-\frac{1}{100}=0\implies \lambda=\pm \frac{1}{10}$ are independent of $\alpha$.
 # 
 # * Tridiagonal matrix 
+#   
+# $$
 # \begin{pmatrix}
 # \lambda_1 & * &  &  & \\
 # * & \lambda_2 & * &  & \\
 # & * & \lambda_3 & \ddots &\\
 #  &  & * & \ddots & *\\
 #  &  & & * & \lambda_n\\
-# \end{pmatrix} is consistently ordered. 
+# \end{pmatrix} 
+# $$
+# 
+# is consistently ordered. 
 
 # ##### Theorem 6 (D. Young)
 # Consider a linear system $A\vec x=\vec f$.
@@ -896,6 +915,7 @@ pprint(sol_SOR)
 # Example.
 # 
 # Consider 
+# 
 # $$
 # A\vec x=
 # \begin{pmatrix}
@@ -959,6 +979,7 @@ pprint(sol_SOR)
 # Note that $\lambda\neq 0$. (Otherwise, $A\vec x=0$, then $\vec x^*A\vec x=0$, contradicting to the fact that A is positive definite.)
 # 
 # From $(16)$, multiply $\vec x^*$ on both sides:
+# 
 # $$
 # \begin{align*}
 # (1-\lambda)\vec x^*N\vec x&=\vec x^*A\vec x \tag{17}\\

@@ -45,6 +45,7 @@
 # so now we are looking into the search direction $\vec p_k$.
 # 
 # Taylor expansion at $\vec x^{(k+1)}$ gives
+# 
 # $$
 # f(\vec x_{k+1})=f(\vec x_{k}+\alpha\vec p_k)=f(\vec x_{k})+\alpha \nabla f(\vec x_{k})\vec p_k+\frac{\alpha^2}{2}\vec p_k^THf(\vec x_{k})\vec p_k.
 # $$
@@ -82,6 +83,7 @@
 # $$
 # 
 # Using $(2)-(1)$, we get
+# 
 # $$
 # \vec e_{k+1}=(I-\alpha A)\vec e_{k}
 # $$

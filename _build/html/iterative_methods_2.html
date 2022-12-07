@@ -518,10 +518,11 @@ f(\vec x)=\frac{1}{2} \vec x^T A\vec x-\vec b^T\vec x=\frac12 \|A\vec x-\vec b\|
 \vec x_{k+1}=\vec x_{k}+\alpha\vec p_k\qquad k=0,1,2,\cdots
 \]</div>
 <p>so now we are looking into the search direction <span class="math notranslate nohighlight">\(\vec p_k\)</span>.</p>
-<p>Taylor expansion at <span class="math notranslate nohighlight">\(\vec x^{(k+1)}\)</span> gives
-$<span class="math notranslate nohighlight">\(
+<p>Taylor expansion at <span class="math notranslate nohighlight">\(\vec x^{(k+1)}\)</span> gives</p>
+<div class="math notranslate nohighlight">
+\[
 f(\vec x_{k+1})=f(\vec x_{k}+\alpha\vec p_k)=f(\vec x_{k})+\alpha \nabla f(\vec x_{k})\vec p_k+\frac{\alpha^2}{2}\vec p_k^THf(\vec x_{k})\vec p_k.
-\)</span>$</p>
+\]</div>
 <p>If <span class="math notranslate nohighlight">\(\alpha\)</span> is small enough, then we can choose</p>
 <div class="math notranslate nohighlight">
 \[
@@ -553,10 +554,11 @@ f(\vec x_{k+1})=f(\vec x_{k}+\alpha\vec p_k)=f(\vec x_{k})+\alpha \nabla f(\vec 
 \[
 \vec x_{k+1}=\vec x_k-\alpha(A\vec x_{k}-\vec b)\tag{2}
 \]</div>
-<p>Using <span class="math notranslate nohighlight">\((2)-(1)\)</span>, we get
-$<span class="math notranslate nohighlight">\(
+<p>Using <span class="math notranslate nohighlight">\((2)-(1)\)</span>, we get</p>
+<div class="math notranslate nohighlight">
+\[
 \vec e_{k+1}=(I-\alpha A)\vec e_{k}
-\)</span>$</p>
+\]</div>
 <p>Obviously, the convergence of the iterative scheme depends on <span class="math notranslate nohighlight">\(\rho (I-\alpha A)\)</span>. To ensure the convergence, we need <span class="math notranslate nohighlight">\(\rho (I-\alpha A)&lt;1\)</span>. Note that the eigenvalues of <span class="math notranslate nohighlight">\((I-\alpha A)\)</span> are <span class="math notranslate nohighlight">\(1-\alpha\lambda_1,1-\alpha\lambda_2,\cdots,1-\alpha\lambda_n\)</span>, so</p>
 <div class="math notranslate nohighlight">
 \[

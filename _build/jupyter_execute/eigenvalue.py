@@ -152,6 +152,7 @@ print('Tolerence = ', sol_power[3])
 # $$
 # 
 # The initial guess
+# 
 # $$
 # \vec x^0=a_1\vec x_1+\cdots+a_n\vec x_n=Q\begin{pmatrix}a_1\\ \vdots\\ a_n\end{pmatrix},\ a_1\neq 0.
 # $$
@@ -172,6 +173,7 @@ print('Tolerence = ', sol_power[3])
 # $$
 # 
 # Then, 
+# 
 # $$
 # \begin{align*}
 # \vec x^{(k)}=\frac{A^k\vec x^{(0)}}{\|A^k\vec x^{(0)}\|_{\infty}}\to\frac{a_1\lambda_1^k}{|a_1||\lambda_1^k|\|\vec x_1\|_{\infty}}\vec x_1,
@@ -220,6 +222,7 @@ print('Tolerence = ', sol_power[3])
 # 
 # 
 # The initial guess
+# 
 # $$
 # \vec x^0=a_1\vec x_1+\cdots+a_n\vec x_n=Q\begin{pmatrix}a_1\\ \vdots\\ a_n\end{pmatrix},\ a_1\neq 0.
 # $$
@@ -453,6 +456,7 @@ print('Tolerence = ', sol_inverse_power_shift[3])
 # $$
 # 
 # Note that 
+# 
 # $$
 # 1>|\frac{\lambda_2}{\lambda_1}|>|\frac{\lambda_3}{\lambda_1}|>\cdots>|\frac{\lambda_n}{\lambda_1}|,
 # $$
@@ -676,6 +680,7 @@ print('Tolerence = ', sol_RQI[3])
 # 1. Apply Gram-Schimidt process to obtain an orthonormal set $\{\vec q_1,\vec q_2,\cdots,\vec q_n\}$. 
 # 2. Compute $\alpha_{jk}=\vec q_j^T \vec a_k$ for $j=1,\cdots,k$; or simply use $R=Q^TA$.
 # 3. Construct QR Factorization
+#    
 # $$
 # A=QR=
 # \begin{pmatrix}
@@ -944,7 +949,7 @@ QR(A)
 # \vec x_1^{(0)} & \vec x_2^{(0)} &\cdots &\vec x_n^{(0)}\\
 # |& |& & |
 # \end{pmatrix}
-# \in M_{n\times n} (\mathbb C)$.
+# \in M_{n\times n} (\mathbb C)$
 # 
 # 1. Obtain the QR factorization of $X^{(0)}=\overline Q^{(0)}R^{(0)}$.
 # 2. For $k=1,2,\cdots$, repeat until convergence:
