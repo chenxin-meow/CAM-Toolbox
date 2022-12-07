@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Iterative Methods for Linear Systems &#8212; Numerical Methods</title>
+    <title>Iterative Methods for Linear Systems (1) &#8212; Numerical Analysis</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -56,7 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Markdown Files" href="markdown.html" />
+    <link rel="next" title="Eigenvalue Problems" href="eigenvalue.html" />
+    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -100,7 +101,7 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Numerical Methods</h1>
+      <h1 class="site-logo" id="site-title">Numerical Analysis</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -117,14 +118,14 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="markdown.html">
-   Markdown Files
-  </a>
- </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Iterative Methods for Linear Systems
+   Iterative Methods for Linear Systems (1)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigenvalue.html">
+   Eigenvalue Problems
   </a>
  </li>
 </ul>
@@ -200,7 +201,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://chenxin-meow.github.io/numerical-methods"
+        <a href="https://chenxin-meow.github.io/Numerical-Analysis/"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -217,7 +218,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://chenxin-meow.github.io/numerical-methods/issues/new?title=Issue%20on%20page%20%2FIterative_Method.html&body=Your%20issue%20content%20here."
+        <a href="https://chenxin-meow.github.io/Numerical-Analysis//issues/new?title=Issue%20on%20page%20%2Fiterative_methods_1.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -245,7 +246,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/Iterative_Method.ipynb"
+        <a href="_sources/iterative_methods_1.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -304,17 +305,12 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Iterative Methods for Linear Systems
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-general-framework-of-iterative-methods">
+   A general framework of Iterative Methods
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-general-framework-of-iterative-methods">
-     A general framework of Iterative Methods
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#convergence-of-m-k">
      Convergence of
      <span class="math notranslate nohighlight">
@@ -322,7 +318,7 @@ title="Print to PDF"
      </span>
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#estimating-spectral-radius-rho-m">
      Estimating spectral radius
      <span class="math notranslate nohighlight">
@@ -330,12 +326,12 @@ title="Print to PDF"
      </span>
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#theorem-1-gershgorin-circle-theorem">
        Theorem 1 (Gershgorin Circle Theorem)
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#strictly-dominant-diagonal-sdd-matrix">
        Strictly Dominant Diagonal (SDD) Matrix
       </a>
@@ -344,51 +340,51 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#different-splitting-methods">
    Different splitting methods
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#jacobi-method">
      Jacobi Method
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#code-demo">
        Code demo
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#convergence-of-jacobi">
-       Convergence of Jacobi
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convergence-of-jacobi">
+     Convergence of Jacobi
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#theorem-2">
+       Theorem 2
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#theorem-2">
-         Theorem 2
-        </a>
-       </li>
-      </ul>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#gauss-seidal-method">
      Gauss-Seidal Method
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id1">
        Code demo
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#convergence-of-gauss-seidal">
        Convergence of Gauss-Seidal
       </a>
       <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
+       <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#theorem-3">
          Theorem 3
         </a>
@@ -397,44 +393,44 @@ title="Print to PDF"
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#successive-over-relaxation-method">
      Successive over-relaxation Method
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id2">
        Code demo
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#convergence-of-sor">
        Convergence of SOR
       </a>
       <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
+       <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#theorem-4">
          Theorem 4
         </a>
        </li>
-       <li class="toc-h4 nav-item toc-entry">
+       <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#theorem-5">
          Theorem 5
         </a>
        </li>
       </ul>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#optimal-parameter-selection">
        Optimal parameter selection
       </a>
       <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
+       <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#consistently-ordered-matrix">
          Consistently ordered Matrix
         </a>
        </li>
-       <li class="toc-h4 nav-item toc-entry">
+       <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#theorem-6-d-young">
          Theorem 6 (D. Young)
         </a>
@@ -445,27 +441,27 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#convergence-of-iterative-method">
-   Convergence of Iterative Method
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convergence-of-iterative-methods-general">
+   Convergence of Iterative Methods (general)
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#theorem-7-householder-john">
      Theorem 7 (Householder-John)
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#examples-for-householder-john">
      Examples for Householder-John
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#example-1">
        Example 1
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#example-2">
        Example 2
       </a>
@@ -483,7 +479,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Iterative Methods for Linear Systems</h1>
+                <h1>Iterative Methods for Linear Systems (1)</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -493,17 +489,12 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Iterative Methods for Linear Systems
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-general-framework-of-iterative-methods">
+   A general framework of Iterative Methods
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-general-framework-of-iterative-methods">
-     A general framework of Iterative Methods
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#convergence-of-m-k">
      Convergence of
      <span class="math notranslate nohighlight">
@@ -511,7 +502,7 @@ title="Print to PDF"
      </span>
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#estimating-spectral-radius-rho-m">
      Estimating spectral radius
      <span class="math notranslate nohighlight">
@@ -519,12 +510,12 @@ title="Print to PDF"
      </span>
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#theorem-1-gershgorin-circle-theorem">
        Theorem 1 (Gershgorin Circle Theorem)
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#strictly-dominant-diagonal-sdd-matrix">
        Strictly Dominant Diagonal (SDD) Matrix
       </a>
@@ -533,51 +524,51 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#different-splitting-methods">
    Different splitting methods
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#jacobi-method">
      Jacobi Method
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#code-demo">
        Code demo
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#convergence-of-jacobi">
-       Convergence of Jacobi
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convergence-of-jacobi">
+     Convergence of Jacobi
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#theorem-2">
+       Theorem 2
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#theorem-2">
-         Theorem 2
-        </a>
-       </li>
-      </ul>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#gauss-seidal-method">
      Gauss-Seidal Method
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id1">
        Code demo
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#convergence-of-gauss-seidal">
        Convergence of Gauss-Seidal
       </a>
       <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
+       <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#theorem-3">
          Theorem 3
         </a>
@@ -586,44 +577,44 @@ title="Print to PDF"
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#successive-over-relaxation-method">
      Successive over-relaxation Method
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id2">
        Code demo
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#convergence-of-sor">
        Convergence of SOR
       </a>
       <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
+       <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#theorem-4">
          Theorem 4
         </a>
        </li>
-       <li class="toc-h4 nav-item toc-entry">
+       <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#theorem-5">
          Theorem 5
         </a>
        </li>
       </ul>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#optimal-parameter-selection">
        Optimal parameter selection
       </a>
       <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
+       <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#consistently-ordered-matrix">
          Consistently ordered Matrix
         </a>
        </li>
-       <li class="toc-h4 nav-item toc-entry">
+       <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#theorem-6-d-young">
          Theorem 6 (D. Young)
         </a>
@@ -634,27 +625,27 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#convergence-of-iterative-method">
-   Convergence of Iterative Method
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convergence-of-iterative-methods-general">
+   Convergence of Iterative Methods (general)
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#theorem-7-householder-john">
      Theorem 7 (Householder-John)
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#examples-for-householder-john">
      Examples for Householder-John
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#example-1">
        Example 1
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#example-2">
        Example 2
       </a>
@@ -673,8 +664,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="iterative-methods-for-linear-systems">
-<h1>Iterative Methods for Linear Systems<a class="headerlink" href="#iterative-methods-for-linear-systems" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="iterative-methods-for-linear-systems-1">
+<h1>Iterative Methods for Linear Systems (1)<a class="headerlink" href="#iterative-methods-for-linear-systems-1" title="Permalink to this headline">#</a></h1>
 <section id="a-general-framework-of-iterative-methods">
 <h2>A general framework of Iterative Methods<a class="headerlink" href="#a-general-framework-of-iterative-methods" title="Permalink to this headline">#</a></h2>
 <p>Goal: Solve a large linear system</p>
@@ -705,9 +696,9 @@ A\vec{x}=\vec{f} \iff (N-P)\vec{x}=\vec{f} \iff N\vec{x}=P\vec{x}+\vec{f}.
 N\vec{x}^{k+1}=P\vec{x}^k+\vec{f}.
 \]</div>
 <p>We always choose an invertible <span class="math notranslate nohighlight">\(N\)</span>, therefore</p>
-<div class="math notranslate nohighlight" id="equation-eqn-1">
-<span class="eqno">(1)<a class="headerlink" href="#equation-eqn-1" title="Permalink to this equation">#</a></span>\[
-\vec{x}^{k+1}=N^{-1}P\vec{x}^k+N^{-1}\vec{f}.
+<div class="math notranslate nohighlight">
+\[
+\vec{x}^{k+1}=N^{-1}P\vec{x}^k+N^{-1}\vec{f}.\tag{1}
 \]</div>
 <p>Obviously, if the sequence <span class="math notranslate nohighlight">\(\{\vec x^k\}_{k=0}^{\infty}\)</span> converges, it converges to <span class="math notranslate nohighlight">\(\vec{x}^*\)</span>, the analytic solution of <span class="math notranslate nohighlight">\(A\vec{x}=\vec{f}\)</span>.</p>
 <p>To ensure the convergence, we study the error sequence <span class="math notranslate nohighlight">\(\{\vec e^k\}_{k=0}^{\infty}\)</span> where</p>
@@ -729,9 +720,8 @@ N\vec{x}^{k+1}=P\vec{x}^k+\vec{f}.
 \vec{e}^{k+1}=M\vec{e}^k=\cdots=M^k\vec{e}^0\tag{4}.
 \]</div>
 <p>Since <span class="math notranslate nohighlight">\(\vec{e}^0\)</span> is an arbitrary number depending on the intial value of the iterative scheme, the convergence of <span class="math notranslate nohighlight">\((4)\)</span> is determined by <span class="math notranslate nohighlight">\(M^k\)</span>. If <span class="math notranslate nohighlight">\(M^k\)</span> converges to <span class="math notranslate nohighlight">\(0\)</span> as <span class="math notranslate nohighlight">\(k\)</span> goes to infinity, then the error sequence will converge to <span class="math notranslate nohighlight">\(0\)</span> as well.</p>
-</section>
 <section id="convergence-of-m-k">
-<h2>Convergence of <span class="math notranslate nohighlight">\(M^k\)</span><a class="headerlink" href="#convergence-of-m-k" title="Permalink to this headline">#</a></h2>
+<h3>Convergence of <span class="math notranslate nohighlight">\(M^k\)</span><a class="headerlink" href="#convergence-of-m-k" title="Permalink to this headline">#</a></h3>
 <p><strong>Question</strong>: Will <span class="math notranslate nohighlight">\(M^k\)</span> converge to <span class="math notranslate nohighlight">\(0\)</span>?</p>
 <p>Firstly, we consider a simple case when <span class="math notranslate nohighlight">\(M\)</span> is diagonalizable. That is, <span class="math notranslate nohighlight">\(M\)</span> has <span class="math notranslate nohighlight">\(n\)</span> linearly independent eigenvector <span class="math notranslate nohighlight">\(\{\vec u_1,\vec u_2,\cdots,\vec u_n\}\in \mathbb C^n\)</span>, with <span class="math notranslate nohighlight">\(n\)</span> corresponding eigenvalues <span class="math notranslate nohighlight">\(\lambda_1,\lambda_2,\cdots,\lambda_n\)</span> s.t.</p>
 <div class="math notranslate nohighlight">
@@ -766,16 +756,16 @@ M\vec u_i=\lambda_i \vec u_i\qquad\forall i=1,\cdots,n.
 <p>Denote <span class="math notranslate nohighlight">\(\rho(M):=\mid \lambda_1\mid=max\{\mid\lambda_k\mid: \lambda_k \text{ is the eigenvalue of }M\}\)</span>. We call <span class="math notranslate nohighlight">\(\rho(M)\)</span> the <strong>spectral radius</strong> of <span class="math notranslate nohighlight">\(M\)</span>. The necessary and sufficient condition for <span class="math notranslate nohighlight">\(M^k\)</span> to converge is  <span class="math notranslate nohighlight">\(\rho(M)&lt;1\)</span>.</p>
 </section>
 <section id="estimating-spectral-radius-rho-m">
-<h2>Estimating spectral radius <span class="math notranslate nohighlight">\(\rho(M)\)</span><a class="headerlink" href="#estimating-spectral-radius-rho-m" title="Permalink to this headline">#</a></h2>
+<h3>Estimating spectral radius <span class="math notranslate nohighlight">\(\rho(M)\)</span><a class="headerlink" href="#estimating-spectral-radius-rho-m" title="Permalink to this headline">#</a></h3>
 <p>We know that the spectral radius <span class="math notranslate nohighlight">\(\rho(M)\)</span> is so important, but how can we determine <span class="math notranslate nohighlight">\(\rho(M)&lt;1\)</span> or not? One can always compute all the eigenvalues by brute force and pick the largest one. One can also use more sophiscated method (e.g.: Power method, QR method) to find the largest eigenvalue in maginitude – we will discuss it in the next chapter. Alternatively, we do have other way to determine the range of <span class="math notranslate nohighlight">\(\rho(M)=\mid\lambda_1\mid\)</span>. By the following theorem, we cannot identify the exact value of <span class="math notranslate nohighlight">\(\rho(M)\)</span>, but we can find an upper bound of it, which will also be helpful to our convergence analysis in some cases.</p>
 <section id="theorem-1-gershgorin-circle-theorem">
-<h3>Theorem 1 (Gershgorin Circle Theorem)<a class="headerlink" href="#theorem-1-gershgorin-circle-theorem" title="Permalink to this headline">#</a></h3>
+<h4>Theorem 1 (Gershgorin Circle Theorem)<a class="headerlink" href="#theorem-1-gershgorin-circle-theorem" title="Permalink to this headline">#</a></h4>
 <p>Given a matrix <span class="math notranslate nohighlight">\(A=(a_{ij})_{1\leq i,j\leq n}\in M_{n\times n}(\mathbb C)\)</span>, we consider an eigenvector <span class="math notranslate nohighlight">\(\vec e=(e_1,\cdots,e_n)^T\)</span> with eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span>. Let <span class="math notranslate nohighlight">\(l\)</span> be the index such that <span class="math notranslate nohighlight">\(e_l\)</span> is the largest in magnitude of <span class="math notranslate nohighlight">\(\vec e\)</span>, i.e. <span class="math notranslate nohighlight">\(\mid e_l\mid \geq \mid e_j\mid\)</span> for all <span class="math notranslate nohighlight">\(j\)</span>. Then</p>
 <div class="math notranslate nohighlight">
 \[
 \lambda\in \overline{B_{a_{ll}}(\sum_{j=1,j\neq l}^n \mid a_{lj}\mid)}.
 \]</div>
-<p>Then <span class="math notranslate nohighlight">\(A\vec e=\lambda \vec e\)</span>.</p>
+<p><em>Proof.</em> Firstly, <span class="math notranslate nohighlight">\(A\vec e=\lambda \vec e\)</span>.</p>
 <p>For each <span class="math notranslate nohighlight">\(1\leq i\leq n\)</span>, the <span class="math notranslate nohighlight">\(i\)</span>-th entry of <span class="math notranslate nohighlight">\(A\vec e=\lambda \vec e\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -792,7 +782,7 @@ M\vec u_i=\lambda_i \vec u_i\qquad\forall i=1,\cdots,n.
 \begin{align*}
 &amp;\mid a_{ll}-\lambda\mid \cdot \mid e_l \mid \leq \sum_{j=1,j\neq l}^n \mid a_{lj}\mid \cdot \mid e_j\mid \leq \sum_{j=1,j\neq l}^n \mid a_{lj}\mid \cdot \mid e_l\mid\\
 &amp;⇒ \mid a_{ll}-\lambda\mid \leq \sum_{j=1,j\neq l}^n \mid a_{lj}\mid\\
-&amp;⇒ \lambda\in \overline{B_{a_{ll}}(\sum_{j=1,j\neq l}^n \mid a_{lj}\mid)}
+&amp;⇒ \lambda\in \overline{B_{a_{ll}}(\sum_{j=1,j\neq l}^n \mid a_{lj}\mid)}\tag{6}
 \end{align*}
 \end{split}\]</div>
 <p>From above we know that <span class="math notranslate nohighlight">\(\lambda\)</span> lies in a ball of center <span class="math notranslate nohighlight">\(a_{ll}\)</span>, radius <span class="math notranslate nohighlight">\(\sum_{j=1,j\neq l}^n \mid a_{lj}\mid\)</span>. It seems that we are done in finding the bound of <span class="math notranslate nohighlight">\(\lambda\)</span>, but we are not. Note that if we have already known <span class="math notranslate nohighlight">\(l\)</span>, we can determine the ball by looking into the <span class="math notranslate nohighlight">\(l\)</span>-th row of <span class="math notranslate nohighlight">\(A\)</span>, then the bound of <span class="math notranslate nohighlight">\(\lambda\)</span> is found. However, the problem is that we do NOT know <span class="math notranslate nohighlight">\(l\)</span>. To find <span class="math notranslate nohighlight">\(l\)</span>, we should</p>
@@ -809,26 +799,24 @@ M\vec u_i=\lambda_i \vec u_i\qquad\forall i=1,\cdots,n.
 <p>Theorem 1 leads to an important property of matrix.</p>
 </section>
 <section id="strictly-dominant-diagonal-sdd-matrix">
-<h3>Strictly Dominant Diagonal (SDD) Matrix<a class="headerlink" href="#strictly-dominant-diagonal-sdd-matrix" title="Permalink to this headline">#</a></h3>
-<div class="proof definition admonition" id="def_SDD">
-<p class="admonition-title"><span class="caption-number">Definition 1 </span> (SDD Matrix)</p>
-<section class="definition-content" id="proof-content">
+<h4>Strictly Dominant Diagonal (SDD) Matrix<a class="headerlink" href="#strictly-dominant-diagonal-sdd-matrix" title="Permalink to this headline">#</a></h4>
 <p>A matrix <span class="math notranslate nohighlight">\(A=(a_{ij})_{1\leq i,j\leq n}\in M_{n\times n}(\mathbb C)\)</span> is strictly dominant diagonal (SDD) if
 $<span class="math notranslate nohighlight">\(
 \mid a_{ii}\mid  &gt; \sum_{j=1,j\neq i}^n \mid a_{ij}\mid ,\qquad \forall i=1,\cdots,n.
 \)</span>$</p>
-</section>
-</div><div class="proof theorem admonition" id="thm_SDD">
-<p class="admonition-title"><span class="caption-number">Theorem 1 </span></p>
-<section class="theorem-content" id="proof-content">
 <p>Obviously, an SDD matrix <span class="math notranslate nohighlight">\(A\)</span> must be non-singular. A quick proof is as follows.</p>
+<p>By Theorem 1, all eigenvalues of <span class="math notranslate nohighlight">\(A\)</span> satisfy</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda\in  \bigcup_{i=1}^n \overline{B_{a_{ii}}(\sum_{j=1,j\neq i}^n \mid a_{ij}\mid)} \subset \bigcup_{i=1}^n \overline{B_{a_{ii}}(\mid a_{ii} \mid)}.
+\]</div>
+<p>Therefore, every ball <span class="math notranslate nohighlight">\(\overline{B_{a_{ii}}(\sum_{j=1,j\neq i}^n \mid a_{ij}\mid)}\)</span> must NOT touch 0, which implies that NO eigenvalue is 0. So <span class="math notranslate nohighlight">\(A\)</span> is non-singular.</p>
+<p>SDD helps us to study the convergence of iterative method in some situation. We will discuss it later. Now let’s introduce some concrete algorithms which utilize iterative methods.</p>
 </section>
-</div><p>SDD helps us to study the convergence of iterative method in some situation. We will discuss it later. Now let’s introduce some concrete algorithms which utilize iterative methods.</p>
 </section>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="different-splitting-methods">
-<h1>Different splitting methods<a class="headerlink" href="#different-splitting-methods" title="Permalink to this headline">#</a></h1>
+<section id="different-splitting-methods">
+<h2>Different splitting methods<a class="headerlink" href="#different-splitting-methods" title="Permalink to this headline">#</a></h2>
 <p>Look back to our splitting method again:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -843,7 +831,7 @@ A=N-(N-A)=N-P.
 </ol>
 <p>There are many possible choices of <span class="math notranslate nohighlight">\(N\)</span>. Here I will introduce three most popular choices, making up three common iterative methods to solve large linear system: Jacobi mathod, Gauss-Seidal method, and SOR method.</p>
 <section id="jacobi-method">
-<h2>Jacobi Method<a class="headerlink" href="#jacobi-method" title="Permalink to this headline">#</a></h2>
+<h3>Jacobi Method<a class="headerlink" href="#jacobi-method" title="Permalink to this headline">#</a></h3>
 <p>Jacobi Method is the simplest and the most intuitive. We choose
 $<span class="math notranslate nohighlight">\(
 N=D,
@@ -855,7 +843,7 @@ where matrix \)</span>D<span class="math notranslate nohighlight">\( is a diagon
 D\vec{x}^{n+1}=(D-A)\vec{x}^n+\vec{f},\qquad\text{or}\qquad\vec{x}^{n+1}=D^{-1}(D-A)\vec{x}^n+D^{-1}\vec{f}.
 \]</div>
 <section id="code-demo">
-<h3>Code demo<a class="headerlink" href="#code-demo" title="Permalink to this headline">#</a></h3>
+<h4>Code demo<a class="headerlink" href="#code-demo" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from pprint import pprint
@@ -882,19 +870,6 @@ def jacobi(A, b, tol=10**(-7), N=25, x=None):
           break
         x = x_iter
     return x, i, tol_iter
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span><span class="p">,</span> <span class="n">zeros</span><span class="p">,</span> <span class="n">diag</span><span class="p">,</span> <span class="n">diagflat</span><span class="p">,</span> <span class="n">dot</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linalg</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">def</span> <span class="nf">jacobi</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">),</span> <span class="n">N</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy&#39;
 </pre></div>
 </div>
 </div>
@@ -952,6 +927,7 @@ pprint(sol_jacobi)
 </div>
 </div>
 <p>From the code above, after 13 iterations, Jacobi converges under the tolerence threshold <span class="math notranslate nohighlight">\(10^{-7}\)</span>, giving result <span class="math notranslate nohighlight">\(\vec x^{13}=(0.186,0.331,-0.423)^T\)</span>.</p>
+</section>
 </section>
 <section id="convergence-of-jacobi">
 <h3>Convergence of Jacobi<a class="headerlink" href="#convergence-of-jacobi" title="Permalink to this headline">#</a></h3>
@@ -1037,9 +1013,8 @@ r=\max_i\{\sum_{j=1,j\neq i}^n \frac{\mid a_{ij}\mid}{\mid a_{ii}\mid}\}&lt;1.
 <p>By <span class="math notranslate nohighlight">\((10)\)</span>, and <span class="math notranslate nohighlight">\(r&lt;1\)</span>, we know that <span class="math notranslate nohighlight">\(\vec e^n\to 0\)</span> as <span class="math notranslate nohighlight">\(n\to ∞\)</span>. Jacobi method converges.</p>
 </section>
 </section>
-</section>
 <section id="gauss-seidal-method">
-<h2>Gauss-Seidal Method<a class="headerlink" href="#gauss-seidal-method" title="Permalink to this headline">#</a></h2>
+<h3>Gauss-Seidal Method<a class="headerlink" href="#gauss-seidal-method" title="Permalink to this headline">#</a></h3>
 <p>Gauss-Seidal Method uses another splitting rule. We choose
 $<span class="math notranslate nohighlight">\(
 N=L+D,
@@ -1056,7 +1031,7 @@ A=L+D+U=\text{lower triangular}+\text{diagonal}+\text{upper triangular}.
 (L+D)\vec{x}^{n+1}=-U\vec{x}^n+\vec{f},\qquad\text{or}\qquad\vec{x}^{n+1}=-(L+D)^{-1}U\vec{x}^n+(L+D)^{-1}\vec{f}.
 \]</div>
 <section id="id1">
-<h3>Code demo<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h4>Code demo<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from pprint import pprint
@@ -1139,7 +1114,7 @@ pprint(sol_gaussSeidal)
 <p>From the code above, after 8 iterations, Gauss-Seidal converges under the tolerence threshold <span class="math notranslate nohighlight">\(10^{-7}\)</span>, giving result <span class="math notranslate nohighlight">\(\vec x^{13}=(0.186,0.331,-0.423)^T\)</span>.</p>
 </section>
 <section id="convergence-of-gauss-seidal">
-<h3>Convergence of Gauss-Seidal<a class="headerlink" href="#convergence-of-gauss-seidal" title="Permalink to this headline">#</a></h3>
+<h4>Convergence of Gauss-Seidal<a class="headerlink" href="#convergence-of-gauss-seidal" title="Permalink to this headline">#</a></h4>
 <p>To analyse the convergence of Gauss-Seidal method, we should study the spectral radius of</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1177,7 +1152,7 @@ M=N^{-1}P=
 <p>where <span class="math notranslate nohighlight">\(\rho(M)=0.205&lt;1\)</span>, so Gauss-Seidal must converge.</p>
 <p>Similar to Theorem 2 in Jacobi method, instead of studying <span class="math notranslate nohighlight">\(\rho(M)\)</span>, we could derive the convergence directly by special matrix property of <span class="math notranslate nohighlight">\(A\)</span> (Theorem 3).</p>
 <section id="theorem-3">
-<h4>Theorem 3<a class="headerlink" href="#theorem-3" title="Permalink to this headline">#</a></h4>
+<h5>Theorem 3<a class="headerlink" href="#theorem-3" title="Permalink to this headline">#</a></h5>
 <blockquote>
 <div><p>If A is SDD, then Gauss-Seidal method to solve <span class="math notranslate nohighlight">\(A\vec x=\vec f\)</span> converges.</p>
 </div></blockquote>
@@ -1245,7 +1220,7 @@ e_1^{n+1}&amp;= \sum_{j=2}^{n} \frac{a_{1j}}{a_{11}}e_j^n\\
 </section>
 </section>
 <section id="successive-over-relaxation-method">
-<h2>Successive over-relaxation Method<a class="headerlink" href="#successive-over-relaxation-method" title="Permalink to this headline">#</a></h2>
+<h3>Successive over-relaxation Method<a class="headerlink" href="#successive-over-relaxation-method" title="Permalink to this headline">#</a></h3>
 <p>Recall in G-S method, <span class="math notranslate nohighlight">\(A=L+D+U\)</span>, so</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1282,7 +1257,7 @@ N\vec{x}^{n+1}=P\vec{x}^n+\vec{f},
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(N=(L+\frac{1}{\omega}D)\)</span>, <span class="math notranslate nohighlight">\(P=\frac{1}{\omega}D-(D+U)\)</span>.</p>
 <section id="id2">
-<h3>Code demo<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<h4>Code demo<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from pprint import pprint
@@ -1408,7 +1383,7 @@ pprint(sol_SOR)
 <p>The choice of <span class="math notranslate nohighlight">\(\omega\)</span> will affect the convergence of SOR. We will discuss it now.</p>
 </section>
 <section id="convergence-of-sor">
-<h3>Convergence of SOR<a class="headerlink" href="#convergence-of-sor" title="Permalink to this headline">#</a></h3>
+<h4>Convergence of SOR<a class="headerlink" href="#convergence-of-sor" title="Permalink to this headline">#</a></h4>
 <p>To analyse the convergence of SOR method, we should study the spectral radius of</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1421,7 +1396,7 @@ M_{\omega}&amp;=N^{-1}P=(L+\frac{1}{\omega}D)^{-1}(\frac{1}{\omega}D-(D+U))\\
 <p>Note that <span class="math notranslate nohighlight">\(M_{\omega}\)</span> depends on <span class="math notranslate nohighlight">\(\omega\)</span>. So we can adjust the value of <span class="math notranslate nohighlight">\(\omega\)</span> to make <span class="math notranslate nohighlight">\(\rho(M_{\omega})\)</span> as small as possible.</p>
 <p>Firstly, there is a necessary condition for the convergence of SOR method.</p>
 <section id="theorem-4">
-<h4>Theorem 4<a class="headerlink" href="#theorem-4" title="Permalink to this headline">#</a></h4>
+<h5>Theorem 4<a class="headerlink" href="#theorem-4" title="Permalink to this headline">#</a></h5>
 <blockquote>
 <div><p>If SOR method to solve <span class="math notranslate nohighlight">\(A\vec x=\vec f\)</span> converges, then <span class="math notranslate nohighlight">\(0&lt;\omega&lt;2\)</span>. (The converse is not true.)</p>
 </div></blockquote>
@@ -1450,7 +1425,7 @@ det(M_{\omega})&amp;=det[(D+\omega L)^{-1}((1-\omega)D-\omega U))]\\
 <p>Now we look at the sufficient condition for the convergence of SOR method.</p>
 </section>
 <section id="theorem-5">
-<h4>Theorem 5<a class="headerlink" href="#theorem-5" title="Permalink to this headline">#</a></h4>
+<h5>Theorem 5<a class="headerlink" href="#theorem-5" title="Permalink to this headline">#</a></h5>
 <blockquote>
 <div><p>If <span class="math notranslate nohighlight">\(A\)</span> is SDD, and <span class="math notranslate nohighlight">\(0&lt;\omega\leq1\)</span>, then SOR method to solve <span class="math notranslate nohighlight">\(A\vec x=\vec f\)</span> converges.</p>
 </div></blockquote>
@@ -1489,10 +1464,10 @@ det(C)=det[(D+\omega L)-\frac{1}{\lambda}((1-\omega)D-\omega U)]=0.
 </section>
 </section>
 <section id="optimal-parameter-selection">
-<h3>Optimal parameter selection<a class="headerlink" href="#optimal-parameter-selection" title="Permalink to this headline">#</a></h3>
+<h4>Optimal parameter selection<a class="headerlink" href="#optimal-parameter-selection" title="Permalink to this headline">#</a></h4>
 <p>In SOR method, the spectral radius <span class="math notranslate nohighlight">\(\rho(M_{\omega})\)</span> depends on <span class="math notranslate nohighlight">\(\omega\)</span>, now we introduce a theorem to find the optimal <span class="math notranslate nohighlight">\(\omega\)</span> giving a smallest <span class="math notranslate nohighlight">\(\rho(M_{\omega})\)</span>.</p>
 <section id="consistently-ordered-matrix">
-<h4>Consistently ordered Matrix<a class="headerlink" href="#consistently-ordered-matrix" title="Permalink to this headline">#</a></h4>
+<h5>Consistently ordered Matrix<a class="headerlink" href="#consistently-ordered-matrix" title="Permalink to this headline">#</a></h5>
 <blockquote>
 <div><p>Let <span class="math notranslate nohighlight">\(A=L+D+U\)</span>. If the eigenvalues of <span class="math notranslate nohighlight">\(\alpha D^{-1}L+\frac{1}{\alpha}D^{-1}U\ (\alpha\neq 0)\)</span> are independent of <span class="math notranslate nohighlight">\(\alpha\)</span>, then matrix <span class="math notranslate nohighlight">\(A\)</span> is said to be consistently ordered.</p>
 </div></blockquote>
@@ -1524,7 +1499,7 @@ det(C)=det[(D+\omega L)-\frac{1}{\lambda}((1-\omega)D-\omega U)]=0.
 </ul>
 </section>
 <section id="theorem-6-d-young">
-<h4>Theorem 6 (D. Young)<a class="headerlink" href="#theorem-6-d-young" title="Permalink to this headline">#</a></h4>
+<h5>Theorem 6 (D. Young)<a class="headerlink" href="#theorem-6-d-young" title="Permalink to this headline">#</a></h5>
 <p>Consider a linear system <span class="math notranslate nohighlight">\(A\vec x=\vec f\)</span>.</p>
 <p>Assume that</p>
 <ol class="simple">
@@ -1572,11 +1547,11 @@ x_2 \\
 </section>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="convergence-of-iterative-method">
-<h1>Convergence of Iterative Method<a class="headerlink" href="#convergence-of-iterative-method" title="Permalink to this headline">#</a></h1>
+<section id="convergence-of-iterative-methods-general">
+<h2>Convergence of Iterative Methods (general)<a class="headerlink" href="#convergence-of-iterative-methods-general" title="Permalink to this headline">#</a></h2>
 <p>Here we study the convergence of Iterative Method again from a more general perspective.</p>
 <section id="theorem-7-householder-john">
-<h2>Theorem 7 (Householder-John)<a class="headerlink" href="#theorem-7-householder-john" title="Permalink to this headline">#</a></h2>
+<h3>Theorem 7 (Householder-John)<a class="headerlink" href="#theorem-7-householder-john" title="Permalink to this headline">#</a></h3>
 <blockquote>
 <div><p>Suppose <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\((N^*+N-A)\)</span> are self-adjoint and positive definite matrices.
 Then the iterative scheme <span class="math notranslate nohighlight">\(N\vec x^{(k+1)}=P\vec x^{(k)}+\vec b\)</span> converges.</p>
@@ -1633,9 +1608,9 @@ $<span class="math notranslate nohighlight">\(
 <p>So the iterative scheme converges. Proof completed.</p>
 </section>
 <section id="examples-for-householder-john">
-<h2>Examples for Householder-John<a class="headerlink" href="#examples-for-householder-john" title="Permalink to this headline">#</a></h2>
+<h3>Examples for Householder-John<a class="headerlink" href="#examples-for-householder-john" title="Permalink to this headline">#</a></h3>
 <section id="example-1">
-<h3>Example 1<a class="headerlink" href="#example-1" title="Permalink to this headline">#</a></h3>
+<h4>Example 1<a class="headerlink" href="#example-1" title="Permalink to this headline">#</a></h4>
 <p>Consider a real, symmetric, positive definite (tri-diagonal) matrix</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1686,7 +1661,7 @@ N^*+N-A=\begin{pmatrix}
 <p>By Householder-John Theorem, Gauss-Seidal converges.</p>
 </section>
 <section id="example-2">
-<h3>Example 2<a class="headerlink" href="#example-2" title="Permalink to this headline">#</a></h3>
+<h4>Example 2<a class="headerlink" href="#example-2" title="Permalink to this headline">#</a></h4>
 <blockquote>
 <div><p>Suppose <span class="math notranslate nohighlight">\(A\)</span> is real symmetric positive-definite (SPD) matrix.
 Prove that SOR method to solve <span class="math notranslate nohighlight">\(A\vec x=\vec b\)</span> converges iff <span class="math notranslate nohighlight">\(0&lt;\omega&lt;2\)</span>.</p>
@@ -1704,6 +1679,7 @@ N^*+N-A=[\frac{1}{\omega}D+U]+[\frac{1}{\omega}D+L]-A=(\frac{2}{\omega}-1)D.
 <li><p><span class="math notranslate nohighlight">\(N^*+N-A\)</span> is positive-definite iff <span class="math notranslate nohighlight">\((\frac{2}{\omega}-1)&gt;0\)</span> iff <span class="math notranslate nohighlight">\(0&lt;\omega&lt;2\)</span>.</p></li>
 </ul>
 <p>By Householder-John Theorem, SOR converges iff <span class="math notranslate nohighlight">\(0&lt;\omega&lt;2\)</span>.</p>
+</section>
 </section>
 </section>
 </section>
@@ -1735,12 +1711,19 @@ N^*+N-A=[\frac{1}{\omega}D+U]+[\frac{1}{\omega}D+L]-A=(\frac{2}{\omega}-1)D.
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="markdown.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Markdown Files</p>
+            <p class="prev-next-title">Welcome to your Jupyter Book</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="eigenvalue.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Eigenvalue Problems</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

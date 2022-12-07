@@ -1,0 +1,1714 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Eigenvalue Problems &#8212; Numerical Analysis</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Iterative Methods for Linear Systems (1)" href="iterative_methods_1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Numerical Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="iterative_methods_1.html">
+   Iterative Methods for Linear Systems (1)
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Eigenvalue Problems
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://chenxin-meow.github.io/Numerical-Analysis/"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://chenxin-meow.github.io/Numerical-Analysis//issues/new?title=Issue%20on%20page%20%2Feigenvalue.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/eigenvalue.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#power-method">
+   Power Method
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algorithm-1-power-method">
+     Algorithm 1 (Power Method)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-demo">
+     Code demo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#power-method-in-matrix-form">
+     Power method in matrix form
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inverse-power-method">
+     Inverse Power Method
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithm-2-inverse-power-method">
+       Algorithm 2 (Inverse Power Method)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Code demo
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inverse-power-method-with-shift">
+     Inverse Power Method with Shift
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithm-3-inverse-power-method-with-shift">
+       Algorithm 3 (Inverse Power Method with Shift)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Code demo
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convergence-analysis-of-power-method">
+     Convergence Analysis of Power Method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rayleigh-quotient-iteration">
+     Rayleigh Quotient Iteration
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithm-4-rayleigh-quotient-iteration">
+       Algorithm 4 (Rayleigh Quotient Iteration)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Code demo
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#qr-method">
+   QR Method
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qr-factorization">
+     QR Factorization
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithm-5-gram-schimidt-process">
+       Algorithm 5 (Gram-Schimidt process)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithm-6-qr-factorization">
+       Algorithm 6 (QR Factorization)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Code demo
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qr-method-for-finding-eigenvalues">
+     QR Method for finding eigenvalues
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithm-7-qr-method">
+       Algorithm 7 (QR Method)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       Code demo
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#convergence-of-qr-method">
+       Convergence of QR Method
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-equivalence-of-power-method-and-qr-method">
+   The Equivalence of Power Method and QR Method
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simultaneous-iteration">
+     Simultaneous Iteration
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithm-8-simultaneous-iteration">
+       Algorithm 8 (Simultaneous Iteration)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algorithm-9-qr-method-a-variation">
+     Algorithm 9 (QR Method, a variation)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-equivalence-of-simultaneous-iteration-and-qr-method">
+     The Equivalence of Simultaneous Iteration and QR Method
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Eigenvalue Problems</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#power-method">
+   Power Method
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algorithm-1-power-method">
+     Algorithm 1 (Power Method)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-demo">
+     Code demo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#power-method-in-matrix-form">
+     Power method in matrix form
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inverse-power-method">
+     Inverse Power Method
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithm-2-inverse-power-method">
+       Algorithm 2 (Inverse Power Method)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Code demo
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inverse-power-method-with-shift">
+     Inverse Power Method with Shift
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithm-3-inverse-power-method-with-shift">
+       Algorithm 3 (Inverse Power Method with Shift)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Code demo
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convergence-analysis-of-power-method">
+     Convergence Analysis of Power Method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rayleigh-quotient-iteration">
+     Rayleigh Quotient Iteration
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithm-4-rayleigh-quotient-iteration">
+       Algorithm 4 (Rayleigh Quotient Iteration)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Code demo
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#qr-method">
+   QR Method
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qr-factorization">
+     QR Factorization
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithm-5-gram-schimidt-process">
+       Algorithm 5 (Gram-Schimidt process)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithm-6-qr-factorization">
+       Algorithm 6 (QR Factorization)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Code demo
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qr-method-for-finding-eigenvalues">
+     QR Method for finding eigenvalues
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithm-7-qr-method">
+       Algorithm 7 (QR Method)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       Code demo
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#convergence-of-qr-method">
+       Convergence of QR Method
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-equivalence-of-power-method-and-qr-method">
+   The Equivalence of Power Method and QR Method
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simultaneous-iteration">
+     Simultaneous Iteration
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithm-8-simultaneous-iteration">
+       Algorithm 8 (Simultaneous Iteration)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algorithm-9-qr-method-a-variation">
+     Algorithm 9 (QR Method, a variation)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-equivalence-of-simultaneous-iteration-and-qr-method">
+     The Equivalence of Simultaneous Iteration and QR Method
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="eigenvalue-problems">
+<h1>Eigenvalue Problems<a class="headerlink" href="#eigenvalue-problems" title="Permalink to this headline">#</a></h1>
+<p>Given a linear transformation <span class="math notranslate nohighlight">\(f(x)=Ax\)</span> mapping from <span class="math notranslate nohighlight">\(\mathbb C^n\)</span> to <span class="math notranslate nohighlight">\(\mathbb C^m\)</span>, we are always interested in studying the eigenvalues and eigenvectors of <span class="math notranslate nohighlight">\(A\)</span>. This helps us to understand the characteristics of linear transformation. Moreover, the convergence analysis of iterative methods for solving linear system depends on the spectral radius of specific matrices, which also requires us to study the eigenvalues and eigenvectors. However, the analytical scheme to find eigenvalues needs to solve an <span class="math notranslate nohighlight">\(n\)</span>-th order polynomial characteristic equation. The computation is difficult when <span class="math notranslate nohighlight">\(A\)</span> is a really large matrix. Therefore, applied mathematicians invent more sophisticated methods to solve the problem numerically.</p>
+<p>In this chapter, we will discuss two methods to solve the eigenvalue problem: Power method and QR method. Power method finds the largest dominant eigenvalue and its corresponding eigenvector, whereas QR method can find all the eigenvalues at the same time. These two methods, although look in huge difference, are the same from a more general perspective. We will discuss the relationship between Power method and QR method as well.</p>
+<section id="power-method">
+<h2>Power Method<a class="headerlink" href="#power-method" title="Permalink to this headline">#</a></h2>
+<p>Consider a matrix <span class="math notranslate nohighlight">\(A\in M_{n\times n}(\mathbb C)\)</span> with <span class="math notranslate nohighlight">\(n\)</span> eigenvalues <span class="math notranslate nohighlight">\(\lambda_1, \lambda_2, \cdots, \lambda_n\)</span> and corresponding eigenvectors <span class="math notranslate nohighlight">\(\vec x_1, \vec x_2, \cdots, \vec x_n\)</span>. Suppose that <span class="math notranslate nohighlight">\(A\)</span> is diagonalizable, that is, <span class="math notranslate nohighlight">\(\vec x_1, \vec x_2, \cdots, \vec x_n\)</span> form a basis in <span class="math notranslate nohighlight">\(\mathbb C^n\)</span>. Further assume that <span class="math notranslate nohighlight">\(|\lambda_1|&gt; |\lambda_2|\geq  \cdots\geq |\lambda_n|\)</span> (i.e. <span class="math notranslate nohighlight">\(\lambda_1\)</span> strictly dominates all other eigenvalues).</p>
+<p>Given an initial guess  <span class="math notranslate nohighlight">\(\vec x^0=a_1\vec x_1+a_2\vec x_2+\cdots+a_n\vec x_n,\ a_1\neq 0\)</span>,  we consider an iterative scheme:</p>
+<div class="math notranslate nohighlight">
+\[
+\vec x^{(k+1)}=\frac{A\vec x^{(k)}}{\|A\vec x^{(k)}\|_{\infty}}.
+\]</div>
+<p>It follows that</p>
+<div class="math notranslate nohighlight">
+\[
+\vec x^{(k)}=\frac{A\vec x^{(k-1)}}{\|A\vec x^{(k-1)}\|_{\infty}}=\frac{A\frac{A\vec x^{(k-2)}}{\|A\vec x^{(k-2)}\|_{\infty}}}{\|A\frac{A\vec x^{(k-2)}}{\|A\vec x^{(k-2)}\|_{\infty}}\|_{\infty}}=\frac{A^2\vec x^{(k-2)}}{\|A^2\vec x^{(k-2)}\|_{\infty}}=\cdots=\frac{A^k\vec x^{(0)}}{\|A^k\vec x^{(0)}\|_{\infty}}.
+\]</div>
+<p>Since</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+A^k\vec x^{(0)}&amp;=a_1\lambda_1^k\vec x_1+a_2\lambda_2^k\vec x_2+\cdots+a_n\lambda_n^k\vec x_n\\
+&amp;=a_1\lambda_1^k(\vec x_1+\sum_{j=2}^n\frac{a_j}{a_1}(\frac{\lambda_j}{\lambda_1})^k\vec x_j),
+\end{align*}
+\end{split}\]</div>
+<p>we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\vec x^{(k)}&amp;=\frac{A^k\vec x^{(0)}}{\|A^k\vec x^{(0)}\|_{\infty}}\\
+&amp;=\frac{a_1\lambda_1^k(\vec x_1+\sum_{j=2}^n\frac{a_j}{a_1}(\frac{\lambda_j}{\lambda_1})^k\vec x_j)}{\|a_1\lambda_1^k(\vec x_1+\sum_{j=2}^n\frac{a_j}{a_1}(\frac{\lambda_j}{\lambda_1})^k\vec x_j)\|_{\infty}}\\
+&amp;\to \frac{a_1\lambda_1^k\vec x_1}{\|a_1\lambda_1^k\vec x_1\|_{\infty}}\qquad\qquad\text{as }k\to \infty\\
+&amp;=\frac{a_1\lambda_1^k}{|a_1||\lambda_1^k|\|\vec x_1\|_{\infty}}\vec x_1.
+\end{align*}
+\end{split}\]</div>
+<p>Note that <span class="math notranslate nohighlight">\(\vec x_1\)</span> is the eigenvector corresponding with the largest eigenvalue, and <span class="math notranslate nohighlight">\(\vec x^{(k)}\)</span> converges to the direction of <span class="math notranslate nohighlight">\(\vec x_1\)</span>.</p>
+<p>Moreover, observe that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\|A\vec x^{(k)}\|_{\infty} &amp;\to \| \frac{a_1\lambda_1^k}{|a_1||\lambda_1^k|\|\vec x_1\|_{\infty}}\cdot A\vec x_1\|_{\infty}\\
+&amp;=\| \frac{1}{\|\vec x_1\|_{\infty}}\cdot \lambda_1\vec x_1\|_{\infty}\\
+&amp;=|\lambda_1|\qquad\qquad\text{as }k\to \infty\\
+\end{align*}
+\end{split}\]</div>
+<p>that is, <span class="math notranslate nohighlight">\(\|A\vec x^{(k)}\|_{\infty}\)</span> converges to the largest eigenvalue <span class="math notranslate nohighlight">\(|\lambda_1|\)</span>.</p>
+<p>Now we can formulate the Power method as follows.</p>
+<section id="algorithm-1-power-method">
+<h3>Algorithm 1 (Power Method)<a class="headerlink" href="#algorithm-1-power-method" title="Permalink to this headline">#</a></h3>
+<p>Goal: find the largest eigenvalue in magnitude of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<ol class="simple">
+<li><p>Initialization: <span class="math notranslate nohighlight">\(\vec x^{(0)}=a_1\vec x_1+a_2\vec x_2+\cdots+a_n\vec x_n,\ a_1\neq 0\)</span>.</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(k=1,2,\cdots\)</span>, repeat until convergence:</p>
+<ul class="simple">
+<li><p>Compute <span class="math notranslate nohighlight">\(\vec x^{(k)}=\frac{A\vec x^{(k-1)}}{\|A\vec x^{(k-1)}\|_{\infty}}.\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(\rho_k=\|A\vec x^{(k)}\|_{\infty}\)</span>.</p></li>
+</ul>
+</li>
+</ol>
+<p>Then <span class="math notranslate nohighlight">\(\rho_k\to |\lambda_1|\)</span> as <span class="math notranslate nohighlight">\(k\to \infty\)</span>.</p>
+<p>Remark: In fact, if <span class="math notranslate nohighlight">\(\lambda_1\)</span> has multiplicity greater than 1, i.e.  <span class="math notranslate nohighlight">\(|\lambda_1|=\cdots=|\lambda_i|&gt;|\lambda_{i+1}|\geq  \cdots\geq |\lambda_n|\)</span>, Power method also works, and the proof is similar to the above.</p>
+</section>
+<section id="code-demo">
+<h3>Code demo<a class="headerlink" href="#code-demo" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+import random
+
+def power(A,tol=10**(-7),N=100,x=None,seed=10):
+  &quot;&quot;&quot;Finding the dominated eigenvalue of A via the Power method.&quot;&quot;&quot;
+
+  random.seed(seed)
+
+  # initilize x
+  n=A.shape[1]
+  x=np.random.rand(n,1)
+  x=x/max(abs(x))
+  rho=max(abs(A@x))
+
+  # iterate for N times 
+  for i in range(N):
+    # power iteration
+    x_iter = A@x/max(abs(A@x))
+    rho_iter=max(abs(A@x_iter))
+    x = x_iter
+
+    # check for convergence
+    tol_iter = abs(rho_iter-rho)
+    if(tol_iter &lt; tol): 
+      rho = rho_iter
+      break
+    rho = rho_iter
+
+  x = np.transpose(x)
+
+  return x, rho, i, tol_iter
+</pre></div>
+</div>
+</div>
+</div>
+<p>Consider the matrix <span class="math notranslate nohighlight">\(A=\begin{pmatrix}
+5 &amp; -2 &amp; 3\\
+-3 &amp; 9 &amp; 1\\
+2 &amp; -1 &amp; -7\\
+\end{pmatrix}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A = np.array([[5,-2,3],[-3,9,1],[2,-1,-7]])
+sol_power=power(A)
+print(&#39;The dominated eigenvalue = %0.4f&#39; %(sol_power[1]))
+print(&#39;The corresponding eigenvector = &#39;, sol_power[0])
+print(&#39;Iteration = &#39;, sol_power[2])
+print(&#39;Tolerence = &#39;, sol_power[3])
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The dominated eigenvalue = 10.2271
+The corresponding eigenvector =  [[-0.44562945  1.         -0.10978393]]
+Iteration =  48
+Tolerence =  [9.76744907e-08]
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the code above, the dominated eigenvalue is <span class="math notranslate nohighlight">\(|\lambda_1|=10.2271\)</span>.</p>
+</section>
+<section id="power-method-in-matrix-form">
+<h3>Power method in matrix form<a class="headerlink" href="#power-method-in-matrix-form" title="Permalink to this headline">#</a></h3>
+<p>We can also analyze the Power method in matrix form. This will help us to extend Power method to the case that <span class="math notranslate nohighlight">\(A\)</span> is non-diagonalizable. But before that, let’s re-visit the Power method when <span class="math notranslate nohighlight">\(A\)</span> is diagonalizable.</p>
+<p>Suppose <span class="math notranslate nohighlight">\(A\in M_{n\times n}(\mathbb C)\)</span> has <span class="math notranslate nohighlight">\(n\)</span> eigenvalues <span class="math notranslate nohighlight">\(\lambda_1, \lambda_2, \cdots, \lambda_n\)</span> and corresponding eigenvectors <span class="math notranslate nohighlight">\(\vec x_1, \vec x_2, \cdots, \vec x_n\)</span>. Assume that <span class="math notranslate nohighlight">\(|\lambda_1|&gt; |\lambda_2|\geq  \cdots\geq |\lambda_n|\)</span>.</p>
+<p>Write <span class="math notranslate nohighlight">\(Q=(\vec x_1, \vec x_2, \cdots, \vec x_n)\in M_{n\times n}(\mathbb C)\)</span>, then <span class="math notranslate nohighlight">\(A\)</span> can be diagonalized into</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A=Q
+\begin{pmatrix}
+\lambda_1 &amp; &amp;\\
+&amp;\ddots &amp;\\
+&amp; &amp; \lambda_n
+\end{pmatrix}
+Q^{-1}.
+\end{split}\]</div>
+<p>The initial guess
+$<span class="math notranslate nohighlight">\(
+\vec x^0=a_1\vec x_1+\cdots+a_n\vec x_n=Q\begin{pmatrix}a_1\\ \vdots\\ a_n\end{pmatrix},\ a_1\neq 0.
+\)</span>$</p>
+<p>We consider the iterative scheme in the Power method.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+A^k\vec x^{(0)}&amp;=Q\begin{pmatrix}
+\lambda_1 &amp; &amp;\\
+&amp;\ddots &amp;\\
+&amp; &amp; \lambda_n
+\end{pmatrix}Q^{-1} Q\begin{pmatrix}a_1\\ \vdots\\ a_n\end{pmatrix}\\
+&amp;=Q\begin{pmatrix}a_1\lambda_1^k\\ a_2\lambda_2^k\\ \vdots\\ a_n\lambda_n^k\end{pmatrix}=a_1\lambda_1^kQ \begin{pmatrix} 1\\ \frac{a_2}{a_1}(\frac{\lambda_2}{\lambda_1})^k\\ \vdots\\ \frac{a_n}{a_1}(\frac{\lambda_n}{\lambda_1})^k\end{pmatrix}\\
+&amp;\to a_1\lambda_1^kQ \begin{pmatrix}1\\ 0\\ \vdots\\ 0\end{pmatrix} \qquad\text{as }k\to \infty\\
+&amp;=a_1\lambda_1^k \vec x_1.
+\end{align*}
+\end{split}\]</div>
+<p>Then,
+$<span class="math notranslate nohighlight">\(
+\begin{align*}
+\vec x^{(k)}=\frac{A^k\vec x^{(0)}}{\|A^k\vec x^{(0)}\|_{\infty}}\to\frac{a_1\lambda_1^k}{|a_1||\lambda_1^k|\|\vec x_1\|_{\infty}}\vec x_1,
+\end{align*}
+\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\|A\vec x^{(k)}\|_{\infty} &amp;\to \| \frac{a_1\lambda_1^k}{|a_1||\lambda_1^k|\|\vec x_1\|_{\infty}}\cdot A\vec x_1\|_{\infty}\\
+&amp;=\| \frac{1}{\|\vec x_1\|_{\infty}}\cdot \lambda_1\vec x_1\|_{\infty}\\
+&amp;=|\lambda_1|\qquad\text{as }k\to \infty.\\
+\end{align*}
+\end{split}\]</div>
+<p>We have discussed the case that <span class="math notranslate nohighlight">\(A\)</span> is diagonalizable. When <span class="math notranslate nohighlight">\(A\)</span> is non-diagonalizable, Power method also works well, but we need a different formulation of <span class="math notranslate nohighlight">\(A\)</span>’s diagonalization.</p>
+<p>In fact, whether <span class="math notranslate nohighlight">\(A\)</span> is diagonalizable or not, we can always “diagonalize” <span class="math notranslate nohighlight">\(A\)</span> into</p>
+<div class="math notranslate nohighlight">
+\[
+A=QJQ^{-1},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(Q=(\vec x_1, \vec x_2, \cdots, \vec x_n)\)</span>. Here <span class="math notranslate nohighlight">\(\vec x_1, \cdots, \vec x_n\)</span> are the basis of the generalized eigenvecor with eigenvalues <span class="math notranslate nohighlight">\(\lambda_1,\cdots,\lambda_n\)</span> ; and <span class="math notranslate nohighlight">\(J\)</span> is the <strong>Jordan normal form</strong> (block diagonal matrix)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+J=\begin{pmatrix}
+\lambda_1 &amp; &amp; &amp;\\
+&amp;[J(\lambda_{i_1})]&amp; &amp; &amp;\\
+&amp; &amp; \ddots &amp;\\
+&amp; &amp; &amp;[J(\lambda_{i_l})]
+\end{pmatrix},
+\end{split}\]</div>
+<p>and the Jordan block can be written as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+J(\lambda_{i_j})=\begin{pmatrix}
+\lambda_{i_j} &amp; 1&amp; &amp; &amp;\\
+&amp;\lambda_{i_j}&amp; 1&amp; &amp; &amp;\\
+&amp; &amp; \ddots &amp; \ddots\\
+&amp; &amp; &amp; \ddots&amp;1\\
+&amp; &amp; &amp; &amp;\lambda_{i_j}
+\end{pmatrix}.
+\end{split}\]</div>
+<p>The initial guess
+$<span class="math notranslate nohighlight">\(
+\vec x^0=a_1\vec x_1+\cdots+a_n\vec x_n=Q\begin{pmatrix}a_1\\ \vdots\\ a_n\end{pmatrix},\ a_1\neq 0.
+\)</span>$</p>
+<p>We consider the iterative scheme</p>
+<div class="math notranslate nohighlight">
+\[
+\vec x^{(k)}=\frac{A^k\vec x^{(0)}}{\|A^k\vec x^{(0)}\|_{\infty}}
+\]</div>
+<p>in the Power method. Then</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+A^k\vec x^{(0)}&amp;=QJ^kQ^{-1}Q\begin{pmatrix}a_1\\ \vdots\\ a_n\end{pmatrix}=QJ^k\begin{pmatrix}a_1\\ \vdots\\ a_n\end{pmatrix}\\
+&amp;=Q\begin{pmatrix}
+\lambda_1^k &amp; &amp; &amp;\\
+&amp;[J(\lambda_{i_1})]^k&amp; &amp; &amp;\\
+&amp; &amp; \ddots &amp;\\
+&amp; &amp; &amp;[J(\lambda_{i_l})]^k
+\end{pmatrix}
+\begin{pmatrix}a_1\\ a_2 \\ \vdots\\ a_n\end{pmatrix}\\
+&amp;=Q\begin{pmatrix}
+a_1\lambda_1^k \\
+\begin{pmatrix}
+[J(\lambda_{i_1})]^k &amp; &amp;\\
+&amp;\ddots&amp;\\
+&amp; &amp; [J(\lambda_{i_l})]^k
+\end{pmatrix}
+\begin{pmatrix} a_2 \\ \vdots\\ a_n\end{pmatrix}
+\end{pmatrix}\\
+&amp;=a_1\lambda_1^kQ
+\begin{pmatrix}
+1 \\
+\frac{1}{a_1}\begin{pmatrix}
+[\frac{J(\lambda_{i_1})}{\lambda_1}]^k &amp; &amp;\\
+&amp;\ddots&amp;\\
+&amp; &amp; \frac{J(\lambda_{i_l})}{\lambda_1}]^k
+\end{pmatrix}
+\begin{pmatrix} a_2 \\ \vdots\\ a_n\end{pmatrix}
+\end{pmatrix}\\
+&amp;\to a_1\lambda_1^kQ \begin{pmatrix}1\\ 0\\\vdots\\ 0\end{pmatrix} \qquad\text{as }k\to \infty\\
+&amp;=a_1\lambda_1^k \vec x_1.
+\end{align*}
+\end{split}\]</div>
+<p>Therefore,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+\vec x^{(k)}=\frac{A^k\vec x^{(0)}}{\|A^k\vec x^{(0)}\|_{\infty}}\to \frac{a_1\lambda_1^k}{|a_1||\lambda_1^k|\|\vec x_1\|_{\infty}}\vec x_1,
+\end{align*}
+\]</div>
+<p>Hence <span class="math notranslate nohighlight">\(\vec x^{(k)}\)</span> converges to the direction of <span class="math notranslate nohighlight">\(\vec x_1\)</span>, the eigenvector corresponding with the largest eigenvalue, and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\|A\vec x^{(k)}\|_{\infty} &amp;\to \| \frac{a_1\lambda_1^k}{|a_1||\lambda_1^k|\|\vec x_1\|_{\infty}}\cdot A\vec x_1\|_{\infty}\\
+&amp;=\| \frac{1}{\|\vec x_1\|_{\infty}}\cdot \lambda_1\vec x_1\|_{\infty}\\
+&amp;=|\lambda_1|\qquad\qquad\text{as }k\to \infty,\\
+\end{align*}
+\end{split}\]</div>
+<p>that is, <span class="math notranslate nohighlight">\(\|A\vec x^{(k)}\|_{\infty}\)</span> converges to the largest eigenvalue <span class="math notranslate nohighlight">\(|\lambda_1|\)</span>.</p>
+</section>
+<section id="inverse-power-method">
+<h3>Inverse Power Method<a class="headerlink" href="#inverse-power-method" title="Permalink to this headline">#</a></h3>
+<p>Power method is powerful. Besides finding the largest eigenvalue, it can also be extended to get the smallest eigenvalue.</p>
+<p>Consider a matrix <span class="math notranslate nohighlight">\(A\)</span> with eigenvalues <span class="math notranslate nohighlight">\(|\lambda_1|\geq  |\lambda_2|\geq  \cdots\geq |\lambda_{n-1}|&gt; |\lambda_n|\)</span>. Then its inverse <span class="math notranslate nohighlight">\(A^{-1}\)</span> has eigenvalues <span class="math notranslate nohighlight">\(|\frac{1}{\lambda_n}|&gt;|\frac{1}{\lambda_{n-1}}|\geq \cdots |\frac{1}{\lambda_1}|\)</span>. Intuitively, we can apply the Power method on <span class="math notranslate nohighlight">\(A^{-1}\)</span> to get the largest eigenvalue <span class="math notranslate nohighlight">\(|\frac{1}{\lambda_n}|\)</span> of <span class="math notranslate nohighlight">\(A^{-1}\)</span>, then we find the smallest eigenvalue <span class="math notranslate nohighlight">\(|\lambda_n|\)</span> of<span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>However, directly computing <span class="math notranslate nohighlight">\(A^{-1}\)</span> is hard. Instead of computing <span class="math notranslate nohighlight">\(A^{-1}\)</span> explicitly, in each iteration, we solve <span class="math notranslate nohighlight">\(A\vec y=\vec x^{(k-1)}\)</span> to determine <span class="math notranslate nohighlight">\(A^{-1} x^{(k-1)}\)</span>.</p>
+<section id="algorithm-2-inverse-power-method">
+<h4>Algorithm 2 (Inverse Power Method)<a class="headerlink" href="#algorithm-2-inverse-power-method" title="Permalink to this headline">#</a></h4>
+<p>Goal: find the smallest eigenvalue in magnitude of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<ol class="simple">
+<li><p>Initialization: Pick <span class="math notranslate nohighlight">\(\vec x^{(0)}\)</span> (usually with <span class="math notranslate nohighlight">\(\|\vec x^{(0)}\|_{\infty}=1\)</span>).</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(k=1,2,\cdots\)</span>, repeat until convergence:</p>
+<ul class="simple">
+<li><p>Solve <span class="math notranslate nohighlight">\(A\vec y=\vec x^{(k-1)}\)</span>.</p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(\vec x^{(k)}=\frac{\vec y}{\|\vec y\|_{\infty}}.\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(\rho_k=\|A\vec x^{(k)}\|_{\infty}\)</span>.</p></li>
+</ul>
+</li>
+</ol>
+<p>Then <span class="math notranslate nohighlight">\(\rho_k\to |\lambda_n|\)</span> as <span class="math notranslate nohighlight">\(k\to \infty\)</span>.</p>
+</section>
+<section id="id1">
+<h4>Code demo<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def inverse_power(A,tol=10**(-7),N=100,x=None,seed=10):
+  &quot;&quot;&quot;Finding the smallest eigenvalue of A via the Inverse Power method.&quot;&quot;&quot;
+  
+  random.seed(seed)
+
+  # initilize x
+  n=A.shape[1]
+  x=np.random.rand(n,1)
+  x=x/max(abs(x))
+  rho=max(abs(A@x))
+
+  # iterate for N times 
+  for i in range(N):
+    # inverse power iteration
+    y=np.linalg.solve(A,x)
+    x_iter = y/max(abs(y))
+    rho_iter=max(abs(A@x_iter))
+    x = x_iter
+
+    # check for convergence
+    tol_iter = abs(rho_iter-rho)
+    if(tol_iter &lt; tol): 
+      rho = rho_iter
+      break
+    rho = rho_iter
+
+  x = np.transpose(x)
+
+  return x, rho, i, tol_iter
+</pre></div>
+</div>
+</div>
+</div>
+<p>Consider the matrix <span class="math notranslate nohighlight">\(A=\begin{pmatrix}
+5 &amp; -2 &amp; 3\\
+-3 &amp; 9 &amp; 1\\
+2 &amp; -1 &amp; -7\\
+\end{pmatrix}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sol_inverse_power=inverse_power(A)
+print(&#39;The smallest eigenvalue = %0.4f&#39; %(sol_inverse_power[1]))
+print(&#39;The corresponding eigenvector = &#39;, sol_inverse_power[0])
+print(&#39;Iteration = &#39;, sol_inverse_power[2])
+print(&#39;Tolerence = &#39;, sol_inverse_power[3])
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The smallest eigenvalue = 4.1830
+The corresponding eigenvector =  [[1.         0.59674018 0.12548192]]
+Iteration =  31
+Tolerence =  [7.34605576e-08]
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the code above, the smallest eigenvalue is <span class="math notranslate nohighlight">\(|\lambda_n|=4.1830\)</span>.</p>
+</section>
+</section>
+<section id="inverse-power-method-with-shift">
+<h3>Inverse Power Method with Shift<a class="headerlink" href="#inverse-power-method-with-shift" title="Permalink to this headline">#</a></h3>
+<p>Other than the smallest/largest eigenvalues, sometimes we are also interested in eigenvalues in between. Given a constant <span class="math notranslate nohighlight">\(\mu\)</span>, can we find the eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> that closet to <span class="math notranslate nohighlight">\(\mu\)</span>? The answer is very simple.</p>
+<p>Simply consider <span class="math notranslate nohighlight">\(B=A-\mu I\)</span>, then <span class="math notranslate nohighlight">\(B\)</span> has eigenvalues <span class="math notranslate nohighlight">\(\lambda_1-\mu,\lambda_2-\mu,\cdots,\lambda_n-\mu\)</span>. We can apply the Inverse Power Method on <span class="math notranslate nohighlight">\(B\)</span> to find the smallest <span class="math notranslate nohighlight">\(|\lambda_j-\mu|\)</span>. This method is called the Inverse Power Method with Shift.</p>
+<section id="algorithm-3-inverse-power-method-with-shift">
+<h4>Algorithm 3 (Inverse Power Method with Shift)<a class="headerlink" href="#algorithm-3-inverse-power-method-with-shift" title="Permalink to this headline">#</a></h4>
+<p>Goal: Take <span class="math notranslate nohighlight">\(\mu \in \mathbb R\)</span>, find the eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> that closet to <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+<ol class="simple">
+<li><p>Initialization: Pick <span class="math notranslate nohighlight">\(\vec x^{(0)}\)</span> (usually with <span class="math notranslate nohighlight">\(\|\vec x^{(0)}\|_{\infty}=1\)</span>).</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(k=1,2,\cdots\)</span>, repeat until convergence:</p>
+<ul class="simple">
+<li><p>Solve <span class="math notranslate nohighlight">\((A-\mu I)\vec y=\vec x^{(k-1)}\)</span>.</p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(\vec x^{(k)}=\frac{\vec y}{\|\vec y\|_{\infty}}.\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(\rho_k=\|A\vec x^{(k)}\|_{\infty}\)</span>.</p></li>
+</ul>
+</li>
+</ol>
+<p>Then <span class="math notranslate nohighlight">\(\rho_k\to |\lambda_n|\)</span> as <span class="math notranslate nohighlight">\(k\to \infty\)</span>.</p>
+</section>
+<section id="id2">
+<h4>Code demo<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def inverse_power_shift(A,mu,tol=10**(-7),N=100,x=None,seed=10):
+  &quot;&quot;&quot;Finding the eigenvalue of A that closet to mu via the Inverse Power method with Shift.&quot;&quot;&quot;
+  
+  random.seed(seed)
+
+  # initilize x
+  n=A.shape[1]
+  x=np.random.rand(n,1)
+  x=x/max(abs(x))
+  rho=max(abs(A@x))
+
+  # iterate for N times 
+  for i in range(N):
+    # inverse power iteration
+    y=np.linalg.solve(A-mu*np.identity(n),x)
+    x_iter = y/max(abs(y))
+    rho_iter=max(abs(A@x_iter))
+    x = x_iter
+
+    # check for convergence
+    tol_iter = abs(rho_iter-rho)
+    if(tol_iter &lt; tol): 
+      rho = rho_iter
+      break
+    rho = rho_iter
+
+  x = np.transpose(x)
+
+  return x, rho, i, tol_iter
+</pre></div>
+</div>
+</div>
+</div>
+<p>Consider the matrix <span class="math notranslate nohighlight">\(A=\begin{pmatrix}
+5 &amp; -2 &amp; 3\\
+-3 &amp; 9 &amp; 1\\
+2 &amp; -1 &amp; -7\\
+\end{pmatrix}\)</span>. Suppose we want to find eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> that closet to <span class="math notranslate nohighlight">\(\mu=6\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sol_inverse_power_shift=inverse_power_shift(A,mu=6)
+print(&#39;The eigenvalue that closet to mu = %0.4f&#39; %(sol_inverse_power_shift[1]))
+print(&#39;The corresponding eigenvector = &#39;, sol_inverse_power_shift[0])
+print(&#39;Iteration = &#39;, sol_inverse_power_shift[2])
+print(&#39;Tolerence = &#39;, sol_inverse_power_shift[3])
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The eigenvalue that closet to mu = 4.1830
+The corresponding eigenvector =  [[-1.         -0.59674017 -0.12548191]]
+Iteration =  20
+Tolerence =  [5.41022791e-08]
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the code above, the eigenvalue that closet to <span class="math notranslate nohighlight">\(\mu=6\)</span> is <span class="math notranslate nohighlight">\(|\lambda|=4.1830\)</span>.</p>
+</section>
+</section>
+<section id="convergence-analysis-of-power-method">
+<h3>Convergence Analysis of Power Method<a class="headerlink" href="#convergence-analysis-of-power-method" title="Permalink to this headline">#</a></h3>
+<p>In Power Method, when updating <span class="math notranslate nohighlight">\(\vec x^{(k)}\)</span>, we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vec x^{(k)}=
+\frac{a_1\lambda_1^k(\vec x_1+\sum_{j=2}^n\frac{a_j}{a_1}(\frac{\lambda_j}{\lambda_1})^k\vec x_j)}{\|a_1\lambda_1^k(\vec x_1+\sum_{j=2}^n\frac{a_j}{a_1}(\frac{\lambda_j}{\lambda_1})^k\vec x_j)\|_{\infty}}\to \frac{a_1\lambda_1^k\vec x_1}{\|a_1\lambda_1^k\vec x_1\|_{\infty}}\qquad\text{as }k\to \infty\\
+\end{split}\]</div>
+<p>Note that
+$<span class="math notranslate nohighlight">\(
+1&gt;|\frac{\lambda_2}{\lambda_1}|&gt;|\frac{\lambda_3}{\lambda_1}|&gt;\cdots&gt;|\frac{\lambda_n}{\lambda_1}|,
+\)</span>$</p>
+<p>The convergence rate depends on <span class="math notranslate nohighlight">\(\eta:=|\frac{\lambda_2}{\lambda_1}|\)</span>.</p>
+<p>Now let’s look into three Power Methods mentioned above. Suppose <span class="math notranslate nohighlight">\(A\)</span> has eigenvalues <span class="math notranslate nohighlight">\(|\lambda_1|&gt;|\lambda_2|&gt;\cdots |\lambda_n|\)</span> with corresponding eigenvectors <span class="math notranslate nohighlight">\(\vec v_1, \vec v_2, \cdots, \vec v_n\)</span>.</p>
+<ol class="simple">
+<li><p>Power Method</p>
+<ul class="simple">
+<li><p>Converges if <span class="math notranslate nohighlight">\(\eta:=|\frac{\lambda_2}{\lambda_1}|&lt;1\)</span> and <span class="math notranslate nohighlight">\(\langle \vec v_1,\vec x^{(0)}\rangle \neq 0\)</span> (<span class="math notranslate nohighlight">\(\vec v_1\)</span> is the eigenvector of <span class="math notranslate nohighlight">\(\lambda_1\)</span>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_k=\|A\vec x^{(k)}\|_{\infty}=|\lambda_1+\mathcal{O}(\eta^k)|\)</span>, slow convergence if <span class="math notranslate nohighlight">\(\eta \approx 1\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Inverse Power Method</p>
+<ul class="simple">
+<li><p>Converges if <span class="math notranslate nohighlight">\(\eta:=|\frac{1/\lambda_{n-1}}{1/\lambda_n}|=|\frac{\lambda_{n}}{\lambda_{n-1}}|&lt;1\)</span> and <span class="math notranslate nohighlight">\(\langle \vec v_n,\vec x^{(0)}\rangle \neq 0\)</span> (<span class="math notranslate nohighlight">\(\vec v_n\)</span> is the eigenvector of <span class="math notranslate nohighlight">\(\lambda_n\)</span>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_k=\|A\vec x^{(k)}\|_{\infty}=|\lambda_n+\mathcal{O}(\eta^k)|\)</span>, slow convergence if <span class="math notranslate nohighlight">\(\eta \approx 1\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Inverse Power Method with Shift</p>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(\lambda_j\)</span> be the eigenvalue closet to <span class="math notranslate nohighlight">\(\mu\)</span>.</p></li>
+<li><p>Converges if <span class="math notranslate nohighlight">\(\eta:=\max_{m\neq j}|\frac{\lambda_{j}-\mu}{\lambda_{m}-\mu}|&lt;1\)</span> and <span class="math notranslate nohighlight">\(\langle \vec v_j,\vec x^{(0)}\rangle \neq 0\)</span> (<span class="math notranslate nohighlight">\(\vec v_j\)</span> is the eigenvector of <span class="math notranslate nohighlight">\(\lambda_j\)</span>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_k=\|A\vec x^{(k)}\|_{\infty}=|\lambda_j+\mathcal{O}(\eta^k)|\)</span>, slow convergence if <span class="math notranslate nohighlight">\(\eta \approx 1\)</span>.</p></li>
+</ul>
+</li>
+</ol>
+<p>In all the methods above, if <span class="math notranslate nohighlight">\(\eta \approx 1\)</span>, then the convergence is slow. But in some cases, we can actually speed up the convergence. Let’s focus on the Inverse Power Method with Shift.</p>
+</section>
+<section id="rayleigh-quotient-iteration">
+<h3>Rayleigh Quotient Iteration<a class="headerlink" href="#rayleigh-quotient-iteration" title="Permalink to this headline">#</a></h3>
+<p>When using Inverse Power Method with Shift, we can update <span class="math notranslate nohighlight">\(\mu\)</span> in each iteration such that <span class="math notranslate nohighlight">\(\mu\)</span> is closer to a real eigenvalue in each iteration. Then, <span class="math notranslate nohighlight">\(\eta:=\max_{m\neq j}|\frac{\lambda_{j}-\mu}{\lambda_{m}-\mu}|\)</span> will become smaller and smaller, so that the convergence is faster and faster.</p>
+<p><strong>Definition 1 (Rayleigh Quotient)</strong> Let a non-zero vector <span class="math notranslate nohighlight">\(\vec v\in \mathbb C, A\in M_{n\times n} (\mathbb C)\)</span>. Then the Rayleigh quotient is defined as</p>
+<div class="math notranslate nohighlight">
+\[
+R(\vec v, A)=\frac{\vec v^* A\vec v}{\vec v^* \vec v}.
+\]</div>
+<p>Remark: Let <span class="math notranslate nohighlight">\(A\)</span> be a symmetric positive definite (SPD) matrix, then all eigenvalues <span class="math notranslate nohighlight">\(\lambda_1\geq \cdots\geq \lambda_n\)</span> are real, and</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda_n\leq R(\vec v, A) \leq \lambda_1\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(R(\vec v, A)=\lambda_j\)</span> when <span class="math notranslate nohighlight">\(\vec v=\vec v_j=\)</span> eigenvalue of <span class="math notranslate nohighlight">\(\lambda_j\)</span>.</p></li>
+</ul>
+<p>Therefore, the  Rayleigh quotient <span class="math notranslate nohighlight">\(R(\vec v, A)\)</span> can be regarded as an approximation of the eigenvalue <span class="math notranslate nohighlight">\(\lambda_j\)</span>, given that <span class="math notranslate nohighlight">\(\vec v\)</span> is close to <span class="math notranslate nohighlight">\(\vec v_j\)</span>.</p>
+<section id="algorithm-4-rayleigh-quotient-iteration">
+<h4>Algorithm 4 (Rayleigh Quotient Iteration)<a class="headerlink" href="#algorithm-4-rayleigh-quotient-iteration" title="Permalink to this headline">#</a></h4>
+<p>Goal: Take <span class="math notranslate nohighlight">\(\mu \in \mathbb R\)</span>, find the eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> that closet to <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+<ol class="simple">
+<li><p>Input: <span class="math notranslate nohighlight">\(\vec x^{(0)}\)</span> with <span class="math notranslate nohighlight">\(\|\vec x^{(0)}\|_2=1\)</span>, and <span class="math notranslate nohighlight">\(\mu_0=\mu\)</span> is the initial guess of desired eigenvalue.</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(k=1,2,\cdots\)</span>, repeat until convergence:</p>
+<ul class="simple">
+<li><p>Solve <span class="math notranslate nohighlight">\((A-\mu_k I)\vec y=\vec x^{(k-1)}\)</span>.</p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(\vec x^{(k)}=\frac{\vec y}{\|\vec y\|_{2}}.\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(\mu_k=R(\vec x^{(k)}, A)=\frac{\vec x^{(k)*} A\vec  x^{(k)}}{\vec x^{(k)*} \vec x^{(k)}}\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Output: <span class="math notranslate nohighlight">\(\mu_k\)</span> is the eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> that closet to <span class="math notranslate nohighlight">\(\mu\)</span>.</p></li>
+</ol>
+</section>
+<section id="id3">
+<h4>Code demo<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def RQI(A,mu,tol=10**(-7),N=100,x=None,seed=10):
+  &quot;&quot;&quot;Finding the eigenvalue of A that closet to mu via the Rayleigh Quotient Iteration.&quot;&quot;&quot;
+  
+  random.seed(seed)
+
+  # initilize x
+  n=A.shape[1]
+  x=np.random.rand(n,1)
+  x=x/np.linalg.norm(x)
+
+  # iterate for N times 
+  for i in range(N):
+    # inverse power iteration
+    y=np.linalg.solve(A-mu*np.identity(n),x)
+    x_iter = y/np.linalg.norm(y)
+    mu_iter= (np.transpose(x_iter)@A@x_iter)/(np.transpose(x_iter)@x_iter)
+    x = x_iter
+
+    # check for convergence
+    tol_iter = abs(mu_iter-mu)
+    if(tol_iter &lt; tol): 
+      mu = mu_iter
+      break
+    mu = mu_iter
+
+  x = np.transpose(x)
+
+  return x, mu, i, tol_iter
+</pre></div>
+</div>
+</div>
+</div>
+<p>Consider the matrix <span class="math notranslate nohighlight">\(A=\begin{pmatrix}
+5 &amp; -2 &amp; 3\\
+-3 &amp; 9 &amp; 1\\
+2 &amp; -1 &amp; -7\\
+\end{pmatrix}\)</span>. Suppose we want to find eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> that closet to <span class="math notranslate nohighlight">\(\mu=6\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sol_RQI=RQI(A,mu=6)
+print(&#39;The eigenvalue that closet to mu = %0.4f&#39; %(sol_RQI[1]))
+print(&#39;The corresponding eigenvector = &#39;, sol_RQI[0])
+print(&#39;Iteration = &#39;, sol_RQI[2])
+print(&#39;Tolerence = &#39;, sol_RQI[3])
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The eigenvalue that closet to mu = 4.1830
+The corresponding eigenvector =  [[-0.85378309 -0.50948667 -0.10713433]]
+Iteration =  4
+Tolerence =  [[1.9095836e-13]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the code above, the eigenvalue that closet to <span class="math notranslate nohighlight">\(\mu=6\)</span> is <span class="math notranslate nohighlight">\(|\lambda|=4.1830\)</span>. Note that the Rayleigh Quotient Iteration converges in only 3 iterations! Actually the Rayleigh Quotient Iteration has a cubic convergence, which is rare in numerical methods.</p>
+</section>
+</section>
+</section>
+<section id="qr-method">
+<h2>QR Method<a class="headerlink" href="#qr-method" title="Permalink to this headline">#</a></h2>
+<p>If we need to find all the eigenvalues of a matrix <span class="math notranslate nohighlight">\(A\)</span>, QR method is preferred. QR method is constructed based on the QR factorization of matrix and Gram-Schimidt process. We will discuss the latter two at first.</p>
+<section id="qr-factorization">
+<h3>QR Factorization<a class="headerlink" href="#qr-factorization" title="Permalink to this headline">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(A=
+\begin{pmatrix}
+|&amp; |&amp; &amp; |\\
+\vec a_1 &amp; \vec a_2 &amp;\cdots &amp;\vec a_n\\
+|&amp; |&amp; &amp; |
+\end{pmatrix}\)</span> be linearly independent. The Gram-Schimidt process converts <span class="math notranslate nohighlight">\(\{\vec a_1,\vec a_2,\cdots,\vec a_n\}\)</span> to an orthonormal set <span class="math notranslate nohighlight">\(\{\vec q_1,\vec q_2,\cdots,\vec q_n\}\)</span>. The details are as follows.</p>
+<section id="algorithm-5-gram-schimidt-process">
+<h4>Algorithm 5 (Gram-Schimidt process)<a class="headerlink" href="#algorithm-5-gram-schimidt-process" title="Permalink to this headline">#</a></h4>
+<ol>
+<li><p><span class="math notranslate nohighlight">\(\tilde q_1=\vec a_1\)</span>.</p>
+<ul class="simple">
+<li><p>Normalize <span class="math notranslate nohighlight">\(\vec q_1=\tilde q_1/\|\tilde q_1\|_2\)</span>.</p></li>
+<li><p>Define <span class="math notranslate nohighlight">\(\alpha_{11}=\|\tilde q_1\|_2\)</span>.</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\tilde q_2=\vec a_2-proj_{\tilde q_1}(\vec a_2)=\vec a_2-\alpha_{12}\vec q_1\)</span>.</p>
+<ul class="simple">
+<li><p>Normalize <span class="math notranslate nohighlight">\(\vec q_2=\tilde q_2/\|\tilde q_2\|_2\)</span>.</p></li>
+<li><p>Define <span class="math notranslate nohighlight">\(\alpha_{12}=\vec q_1^T\vec a_2\)</span>.</p></li>
+<li><p>Define <span class="math notranslate nohighlight">\(\alpha_{22}=\|\tilde q_2\|_2\)</span>.</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\tilde q_3=\vec a_3-proj_{\tilde q_1}(\vec a_3)-proj_{\tilde q_2}(\vec a_3)=\vec a_3-\alpha_{13}\vec q_1-\alpha_{23}\vec q_2\)</span></p>
+<ul class="simple">
+<li><p>Normalize <span class="math notranslate nohighlight">\(\vec q_3=\tilde q_3/\|\tilde q_3\|_2\)</span>.</p></li>
+<li><p>Define <span class="math notranslate nohighlight">\(\alpha_{13}=\vec q_1^T\vec a_3,\alpha_{23}=\vec q_2^T\vec a_3\)</span>.</p></li>
+<li><p>Define <span class="math notranslate nohighlight">\(\alpha_{33}=\|\tilde q_3\|_2\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Suppose <span class="math notranslate nohighlight">\(\vec q_1, \vec q_2,\cdots,\vec q_{k-1}\)</span> are constructed. Then</p>
+<p><span class="math notranslate nohighlight">\(\tilde q_k=\vec a_k-\sum_{i=1}^{k-1} proj_{\tilde q_i}(\vec a_k)=\vec a_k-\sum_{i=1}^{k-1}\alpha_{ik}\vec q_i\)</span>.</p>
+<ul class="simple">
+<li><p>Normalize <span class="math notranslate nohighlight">\(\vec q_k=\tilde q_k/\|\tilde q_k\|_2\)</span>.</p></li>
+<li><p>Define <span class="math notranslate nohighlight">\(\alpha_{jk}=\vec q_j^T\vec a_k\)</span> for <span class="math notranslate nohighlight">\(j=1,\cdots,k-1\)</span>.</p></li>
+<li><p>Define <span class="math notranslate nohighlight">\(\alpha_{kk}=\|\tilde q_k\|_2\)</span>.</p></li>
+</ul>
+</li>
+</ol>
+<p>From the above process, we have</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\vec a_1=\alpha_{11} \vec q_1\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec a_2=\alpha_{12} \vec q_1+\alpha_{22} \vec q_2\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec a_3=\alpha_{13} \vec q_1+\alpha_{23} \vec q_2+\alpha_{33} \vec q_3\)</span>;</p></li>
+<li><p>…</p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec a_k=\alpha_{1k} \vec q_1+\alpha_{2k} \vec q_2+\cdots+\alpha_{kk} \vec q_k\)</span>.</p></li>
+</ul>
+<p>Write it in matrix form. For a matrix <span class="math notranslate nohighlight">\(A\in M_{m\times n}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A=
+\begin{pmatrix}
+|&amp; |&amp; &amp; |\\
+\vec a_1 &amp; \vec a_2 &amp;\cdots &amp;\vec a_n\\
+|&amp; |&amp; &amp; |
+\end{pmatrix}
+=
+\begin{pmatrix}
+|&amp; |&amp; &amp; |\\
+\vec q_1 &amp; \vec q_2 &amp;\cdots &amp;\vec q_n\\
+|&amp; |&amp; &amp; |
+\end{pmatrix}
+\begin{pmatrix}
+\alpha_{11}&amp; \alpha_{12}&amp;\cdots &amp; \alpha_{1n}\\
+ &amp; \alpha_{22} &amp;\cdots &amp;\alpha_{2n}\\
+ &amp; &amp; \ddots &amp;\vdots\\
+&amp; &amp; &amp; \alpha_{nn} 
+\end{pmatrix}
+=QR.
+\end{split}\]</div>
+<p>We denote the orthonormal <span class="math notranslate nohighlight">\(Q\)</span> matrix to be</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+Q=\begin{pmatrix}
+|&amp; |&amp; &amp; |\\
+\vec q_1 &amp; \vec q_2 &amp;\cdots &amp;\vec q_n\\
+|&amp; |&amp; &amp; |
+\end{pmatrix}\in M_{m\times n},
+\end{split}\]</div>
+<p>and the upper triangular <span class="math notranslate nohighlight">\(R\)</span> matrix to be</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+R=\begin{pmatrix}
+\alpha_{11}&amp; \alpha_{12}&amp;\cdots &amp; \alpha_{1n}\\
+ &amp; \alpha_{22} &amp;\cdots &amp;\alpha_{2n}\\
+ &amp; &amp; \ddots &amp;\vdots\\
+&amp; &amp; &amp; \alpha_{nn} 
+\end{pmatrix}\in M_{n\times n},
+\end{split}\]</div>
+<p>The QR factorization of <span class="math notranslate nohighlight">\(A\)</span> is simply</p>
+<div class="math notranslate nohighlight">
+\[
+A=QR.
+\]</div>
+<p>Remark: If all the diagnoal entries of <span class="math notranslate nohighlight">\(R\)</span> are positive, then the  QR factorization is unique.</p>
+</section>
+<section id="algorithm-6-qr-factorization">
+<h4>Algorithm 6 (QR Factorization)<a class="headerlink" href="#algorithm-6-qr-factorization" title="Permalink to this headline">#</a></h4>
+<p>Let <span class="math notranslate nohighlight">\(A=(\vec a_1,\cdots,\vec a_n)\)</span> be full rank.</p>
+<ol class="simple">
+<li><p>Apply Gram-Schimidt process to obtain an orthonormal set <span class="math notranslate nohighlight">\(\{\vec q_1,\vec q_2,\cdots,\vec q_n\}\)</span>.</p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(\alpha_{jk}=\vec q_j^T \vec a_k\)</span> for <span class="math notranslate nohighlight">\(j=1,\cdots,k\)</span>; or simply use <span class="math notranslate nohighlight">\(R=Q^TA\)</span>.</p></li>
+<li><p>Construct QR Factorization
+$<span class="math notranslate nohighlight">\(
+A=QR=
+\begin{pmatrix}
+|&amp; |&amp; &amp; |\\
+\vec q_1 &amp; \vec q_2 &amp;\cdots &amp;\vec q_n\\
+|&amp; |&amp; &amp; |
+\end{pmatrix}
+\begin{pmatrix}
+\alpha_{11}&amp; \alpha_{12}&amp;\cdots &amp; \alpha_{1n}\\
+&amp; \alpha_{22} &amp;\cdots &amp;\alpha_{2n}\\
+&amp; &amp; \ddots &amp;\vdots\\
+&amp; &amp; &amp; \alpha_{nn} 
+\end{pmatrix}.
+\)</span>$</p></li>
+</ol>
+</section>
+<section id="id4">
+<h4>Code demo<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def proj(v1, v2):
+    &quot;&quot;&quot;The projection of v2 onto v1&quot;&quot;&quot;
+    coef = np.dot(v2, v1) / np.dot(v1, v1)
+    proj = coef*v1
+    return proj
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def QR_factor(A):
+  &quot;&quot;&quot;Finding the QR factorization of A (non-singular) via the Gram-Schimidt process.&quot;&quot;&quot;
+  A=np.transpose(A)
+  Q=np.zeros((A.shape))
+
+  for k in range(A.shape[1]):
+    q=A[k]
+    for i in range(k):
+      q=q-proj(Q[i],A[k])
+    Q[k]=q/np.linalg.norm(q)
+   
+  R= Q@np.transpose(A)
+  Q=np.transpose(Q)
+
+  return Q,R
+  
+</pre></div>
+</div>
+</div>
+</div>
+<p>Consider the matrix <span class="math notranslate nohighlight">\(A=\begin{pmatrix}
+5 &amp; -2 &amp; 3\\
+-3 &amp; 9 &amp; 1\\
+2 &amp; -1 &amp; -7\\
+\end{pmatrix}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A = np.array([[5,-3,2],[-2,9,-1],[3,1,-7]])
+np.set_printoptions(suppress=True)
+QR_factor(A)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[ 0.81110711,  0.11546768,  0.57338685],
+        [-0.32444284,  0.90449681,  0.27680744],
+        [ 0.48666426,  0.41055174, -0.77110645]]),
+ array([[ 6.164414  , -4.86664263, -1.45999279],
+        [ 0.        ,  8.20462001, -3.54742366],
+        [-0.        , -0.        ,  6.26771142]]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Compare with the built-in numpy function, the results are the same
+np.linalg.qr(A)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[-0.81110711, -0.11546768, -0.57338685],
+        [ 0.32444284, -0.90449681, -0.27680744],
+        [-0.48666426, -0.41055174,  0.77110645]]),
+ array([[-6.164414  ,  4.86664263,  1.45999279],
+        [ 0.        , -8.20462001,  3.54742366],
+        [ 0.        ,  0.        , -6.26771142]]))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="qr-method-for-finding-eigenvalues">
+<h3>QR Method for finding eigenvalues<a class="headerlink" href="#qr-method-for-finding-eigenvalues" title="Permalink to this headline">#</a></h3>
+<p>Now we come to the QR Method to find all the eigenvalues of a matrix. The algorithm is very simple.</p>
+<section id="algorithm-7-qr-method">
+<h4>Algorithm 7 (QR Method)<a class="headerlink" href="#algorithm-7-qr-method" title="Permalink to this headline">#</a></h4>
+<p>Input: <span class="math notranslate nohighlight">\(A\in M_{n\times n}(\mathbb R)\)</span> is a real symmetric non-singular matrix.</p>
+<p>Output: All eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<ol class="simple">
+<li><p>Initilize <span class="math notranslate nohighlight">\(A^{(0)}=A\)</span>.</p>
+<ul class="simple">
+<li><p>Compute the QR factorization of <span class="math notranslate nohighlight">\(A^{(0)}\)</span>: <span class="math notranslate nohighlight">\(A^{(0)}=Q_0R_0\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A^{(1)}=R_0 Q_0\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Assume <span class="math notranslate nohighlight">\(A^{(1)},\cdots,A^{(k)}\)</span> are constructed.</p>
+<ul class="simple">
+<li><p>Compute the QR factorization of <span class="math notranslate nohighlight">\(A^{(k)}\)</span>: <span class="math notranslate nohighlight">\(A^{(k)}=Q_kR_k\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A^{(k+1)}=R_k Q_k\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Repeat Step 2 until convergence.</p></li>
+<li><p>The diagnoal entries of <span class="math notranslate nohighlight">\(A^{(k)}\)</span> will converge to the eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+</ol>
+</section>
+<section id="id5">
+<h4>Code demo<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def QR(A,tol=10**(-7),N=100):
+  &quot;&quot;&quot;Finding all the eigenvalue of A via the QR method.&quot;&quot;&quot;
+
+  eigen = np.diagonal(A) # extract the diagonal of A
+
+  # iterate for N times 
+  for i in range(N):
+    # QR iteration
+    Q_iter, R_iter = QR_factor(A)
+    A_iter=R_iter@Q_iter
+    eigen_iter = np.diagonal(A_iter)
+    A = A_iter
+
+    # check for convergence
+    tol_iter = np.linalg.norm(eigen_iter-eigen)
+    if(tol_iter &lt; tol): 
+      eigen = eigen_iter
+      break
+    eigen = eigen_iter
+
+  return A, eigen, i, tol_iter
+</pre></div>
+</div>
+</div>
+</div>
+<p>Consider the matrix <span class="math notranslate nohighlight">\(A=\begin{pmatrix}
+0 &amp; -2 \\
+2 &amp; 3 \\
+\end{pmatrix}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A = np.array([[0,2],[2,3]])
+QR(A)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[ 4.        ,  0.00015259],
+        [ 0.00015259, -1.        ]]),
+ array([ 4., -1.]),
+ 7,
+ 9.878167478432468e-08)
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the code above, the eigenvalues of <span class="math notranslate nohighlight">\(A\)</span> are <span class="math notranslate nohighlight">\(\lambda_{1,2}=4,-1\)</span>.</p>
+<p>At first glimpse, QR Method seems a little bit crazy: we do QR, RQ, QR, RQ,… sequentially, and we get the eigenvalues! How does it happen? Don’t be confused, the intuition behind is really simple.</p>
+<p>We can observe that the QR Method gives a sequence of matrices <span class="math notranslate nohighlight">\(\{A=A^{(0)},A^{(1)},\cdots,A^{(k)},\cdots\}\)</span>, where</p>
+<div class="math notranslate nohighlight">
+\[
+A^{(1)}=R_0 Q_0=(Q_0^{-1}Q_0)R_0 Q_0=Q_0^{-1}(Q_0R_0) Q_0=Q_0^{-1}A^{(0)} Q_0.
+\]</div>
+<p>So <span class="math notranslate nohighlight">\(A^{(1)}\)</span> is similar to <span class="math notranslate nohighlight">\(A^{(0)}\)</span>, which implies that <span class="math notranslate nohighlight">\(A^{(1)}\)</span>  has the same set of eigenvalues as <span class="math notranslate nohighlight">\(A^{(0)}\)</span>, this is because</p>
+<div class="math notranslate nohighlight">
+\[
+det(A^{(1)}-\lambda I)=det(Q_0^{-1}A^{(0)} Q_0-\lambda I)=det(Q_0^{-1}(A-\lambda I)Q_0)=det(A^{(0)}-\lambda I).
+\]</div>
+<p>Similarly,</p>
+<div class="math notranslate nohighlight">
+\[
+A^{(2)}=R_1 Q_1=(Q_1^{-1}Q_1)R_1 Q_1=Q_1^{-1}(Q_1R_1) Q_1=Q_1^{-1}A^{(1)} Q_1.
+\]</div>
+<p>Therefore, this sequence of matrices are all similar:</p>
+<div class="math notranslate nohighlight">
+\[
+A=A^{(0)}\sim A^{(1)}\sim  A^{(2)} \sim\cdots\sim A^{(k)}\sim \cdots
+\]</div>
+<p>QR method works for all real matrix, but under certain condition of <span class="math notranslate nohighlight">\(A\)</span>, the convergence of QR method is guaranteed.</p>
+</section>
+<section id="convergence-of-qr-method">
+<h4>Convergence of QR Method<a class="headerlink" href="#convergence-of-qr-method" title="Permalink to this headline">#</a></h4>
+<p>We state the following theorem without proof.</p>
+<p><strong>(Theorem 1)</strong> Let <span class="math notranslate nohighlight">\(A\)</span> be real symmetric non-singular matrix. Then the sequence of matrices generated by the QR Method converges to an upper triangular matrix; and the diagnoal entries of <span class="math notranslate nohighlight">\(A^{(k)}\)</span> will converge to the eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</section>
+</section>
+</section>
+<section id="the-equivalence-of-power-method-and-qr-method">
+<h2>The Equivalence of Power Method and QR Method<a class="headerlink" href="#the-equivalence-of-power-method-and-qr-method" title="Permalink to this headline">#</a></h2>
+<p>There is nothing magic in mathematics. Power Method and QR Method are essentially the same thing. We will prove it here. Before that, note that the most obvious difference between these two methods: Power Method finds the dominating eigenvalue, whereas QR Method finds all the eigenvalues. However, if we make a subtle modification to the Power Method, it will cater for finding all the eigenvalues.</p>
+<p>In Power method, the initialization <span class="math notranslate nohighlight">\(\vec x^{(0)}=a_1\vec x_1+a_2\vec x_2+\cdots+a_n\vec x_n,\ a_1\neq 0\)</span> is random. Note that although we put a “constraint” <span class="math notranslate nohighlight">\(a_1\neq 0\)</span> here, it doesn’t affect our random initialization. From probability theory, if we randomly pick a vector <span class="math notranslate nohighlight">\(\vec x^{(0)}=a_1\vec x_1+a_2\vec x_2+\cdots+a_n\vec x_n\)</span> in <span class="math notranslate nohighlight">\(\mathbb C^n\)</span> the probability of <span class="math notranslate nohighlight">\(a_1=0\)</span> is of measure 0. If you are so lucky to encounter the case that <span class="math notranslate nohighlight">\(a_1= 0\)</span>, no kidding, you should stop doing math and go to buy a lottery.</p>
+<p>In the imaginary world, however, we can assume this case happens. Consider a matrix <span class="math notranslate nohighlight">\(A\in M_{n\times n}(\mathbb C)\)</span> with <span class="math notranslate nohighlight">\(n\)</span> eigenvalues <span class="math notranslate nohighlight">\(|\lambda_1|&gt; |\lambda_2|&gt;  \cdots&gt;|\lambda_i|\cdots&gt;|\lambda_n|\)</span> and corresponding eigenvectors <span class="math notranslate nohighlight">\(\vec x_1, \vec x_2, \cdots,\vec x_i, \cdots, \vec x_n\)</span>.</p>
+<section id="simultaneous-iteration">
+<h3>Simultaneous Iteration<a class="headerlink" href="#simultaneous-iteration" title="Permalink to this headline">#</a></h3>
+<p>Imagine that we choose <span class="math notranslate nohighlight">\(\vec x^{(0)}=a_i\vec x_i+a_{i+1}\vec x_{i+1}+\cdots+a_n\vec x_n,\ a_i\neq 0\)</span> (most likely not at random), then the Power iteration is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\vec x^{(k)}&amp;=\frac{A^k\vec x^{(0)}}{\|A^k\vec x^{(0)}\|_{\infty}}\\
+&amp;=\frac{a_i\lambda_i^k\vec x_i+a_{i+1}\lambda_{i+1}^k\vec x_{i+1}+\cdots+a_n\lambda_n^k\vec x_n}{\|a_i\lambda_i^k\vec x_i+a_{i+1}\lambda_{i+1}^k\vec x_{i+1}+\cdots+a_n\lambda_n^k\vec x_n\|_{\infty}}\\
+&amp;=\frac{a_i\lambda_i^k(\vec x_i+\sum_{j=i+1}^n\frac{a_j}{a_i}(\frac{\lambda_j}{\lambda_i})^k\vec x_j)}{\|a_i\lambda_i^k(\vec x_i+\sum_{j=i+1}^n\frac{a_j}{a_i}(\frac{\lambda_j}{\lambda_i})^k\vec x_j)\|_{\infty}}\\
+&amp;\to \frac{a_i\lambda_i^k\vec x_i}{\|a_i\lambda_i^k\vec x_i\|_{\infty}}\qquad\text{as }k\to \infty
+\end{align*}
+\end{split}\]</div>
+<p>so <span class="math notranslate nohighlight">\(\vec x^{(k)}\)</span> will converges to the direction of <span class="math notranslate nohighlight">\(\vec x_i\)</span> (the eigenvector corresponding with <span class="math notranslate nohighlight">\(\lambda_i\)</span>), and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\|A\vec x^{(k)}\|_{\infty} &amp;\to \| \frac{a_i\lambda_i^k}{|a_i||\lambda_i^k|\|\vec x_i\|_{\infty}}\cdot A\vec x_i\|_{\infty}\\
+&amp;=\| \frac{1}{\|\vec x_i\|_{\infty}}\cdot \lambda_i\vec x_i\|_{\infty}\\
+&amp;=|\lambda_i|\qquad\qquad\text{as }k\to \infty\\
+\end{align*}
+\end{split}\]</div>
+<p>that is, <span class="math notranslate nohighlight">\(\|A\vec x^{(k)}\|_{\infty}\)</span> converges to eigenvalue <span class="math notranslate nohighlight">\(|\lambda_i|\)</span>.</p>
+<p>If we are “smart” enough to choose <span class="math notranslate nohighlight">\(n\)</span> such initial guess <span class="math notranslate nohighlight">\(\{\vec x_1^{(0)},\vec x_2^{(0)},\cdots,\vec x_n^{(0)} \}\)</span> where <span class="math notranslate nohighlight">\(\vec x_i^{(0)}=a_i\vec x_i+a_{i+1}\vec x_{i+1}+\cdots+a_n\vec x_n,\ a_i\neq 0\)</span>, which forms a matrix</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X^{(0)}=
+\begin{pmatrix}
+|&amp; |&amp; &amp; |\\
+\vec x_1^{(0)} &amp; \vec x_2^{(0)} &amp;\cdots &amp;\vec x_n^{(0)}\\
+|&amp; |&amp; &amp; |
+\end{pmatrix}
+\in M_{n\times n} (\mathbb C),
+\end{split}\]</div>
+<p>we can apply the Power method on <span class="math notranslate nohighlight">\(X^{(0)}\)</span> (this is equivalent to applying Power method <span class="math notranslate nohighlight">\(n\)</span> times to <span class="math notranslate nohighlight">\(\{\vec x_1^{(0)},\vec x_2^{(0)},\cdots,\vec x_n^{(0)} \}\)</span>).</p>
+<p>The Power iteration <span class="math notranslate nohighlight">\(X^{(k)}=AX^{(k-1)}\)</span> will generate (without normalization)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A^kX^{(0)}=
+\begin{pmatrix}
+|&amp; |&amp; &amp; |\\
+A^k \vec x_1^{(0)} &amp; A^k \vec x_2^{(0)} &amp;\cdots &amp;A^k \vec x_n^{(0)}\\
+|&amp; |&amp; &amp; |
+\end{pmatrix}\to 
+\begin{pmatrix}
+|&amp; |&amp; &amp; |\\
+k_1 \vec x_1 &amp; k_2 \vec x_2 &amp;\cdots &amp;k_n \vec x_n\\
+|&amp; |&amp; &amp; |
+\end{pmatrix}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(A^k \vec x_i^{(0)}\)</span> <span class="math notranslate nohighlight">\((i=1,\cdots,n)\)</span> converges to the direction of <span class="math notranslate nohighlight">\(\vec x_i\)</span>, the eigenvector corresponding with <span class="math notranslate nohighlight">\(\lambda_i\)</span>.</p>
+<p>If we can make sure that <span class="math notranslate nohighlight">\(A^kX^{(0)}\)</span> is orthogonal (after some iterations), then the convergence is guaranteed. How can we ensure the orthogonality of <span class="math notranslate nohighlight">\(A^kX^{(0)}\)</span>? By QR factorization!</p>
+<p>Consider an intitial guess <span class="math notranslate nohighlight">\(X^{(0)}\)</span> (usually <span class="math notranslate nohighlight">\(I_n\)</span>).</p>
+<ul class="simple">
+<li><p>We take out the “orthogonal” part of <span class="math notranslate nohighlight">\(X^{(0)}\)</span> by QR factorization: <span class="math notranslate nohighlight">\(X^{(0)}=\overline Q^{(0)}R^{(0)}\)</span> (assume that all diagonal entries of <span class="math notranslate nohighlight">\(R^{(0)}\)</span> are positive so that the factorization is unique).</p></li>
+<li><p>Then we apply the Power method on the extracted orthogonal part <span class="math notranslate nohighlight">\(\overline Q^{(0)}\)</span> to get <span class="math notranslate nohighlight">\(W=A\overline Q^{(0)}\)</span>.</p></li>
+<li><p>Again, we take out the “orthogonal” part of <span class="math notranslate nohighlight">\(W\)</span> by QR factorization: <span class="math notranslate nohighlight">\(W=\overline Q^{(1)}R^{(1)}\)</span>.</p></li>
+<li><p>Then we apply the Power method on the extracted orthogonal part <span class="math notranslate nohighlight">\(\overline Q^{(1)}\)</span> to get <span class="math notranslate nohighlight">\(W=A\overline Q^{(1)}\)</span>.</p></li>
+<li><p>…</p></li>
+</ul>
+<p>By repeatedly extracting the orthogonal matrix and applying the Power method on the extracted matrix, we generate a sequence of orthogonal matrices <span class="math notranslate nohighlight">\(\overline Q^{(0)},\overline Q^{(1)},\cdots\)</span>, and the sequence will converge to <span class="math notranslate nohighlight">\(\begin{pmatrix}
+|&amp; |&amp; &amp; |\\
+k_1 \vec x_1 &amp; k_2 \vec x_2 &amp;\cdots &amp;k_n \vec x_n\\
+|&amp; |&amp; &amp; |
+\end{pmatrix}\)</span> when <span class="math notranslate nohighlight">\(k\)</span> tends to infinity.</p>
+<p>Now we formulate the algorithm.</p>
+<section id="algorithm-8-simultaneous-iteration">
+<h4>Algorithm 8 (Simultaneous Iteration)<a class="headerlink" href="#algorithm-8-simultaneous-iteration" title="Permalink to this headline">#</a></h4>
+<p>Goal: Finding all eigenvalues of a real symmetric matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>Input: An intitial guess <span class="math notranslate nohighlight">\(X^{(0)}=I_n
+\begin{pmatrix}
+|&amp; |&amp; &amp; |\\
+\vec x_1^{(0)} &amp; \vec x_2^{(0)} &amp;\cdots &amp;\vec x_n^{(0)}\\
+|&amp; |&amp; &amp; |
+\end{pmatrix}
+\in M_{n\times n} (\mathbb C)\)</span>.</p>
+<ol class="simple">
+<li><p>Obtain the QR factorization of <span class="math notranslate nohighlight">\(X^{(0)}=\overline Q^{(0)}R^{(0)}\)</span>.</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(k=1,2,\cdots\)</span>, repeat until convergence:</p>
+<ul class="simple">
+<li><p>Apply Power method on <span class="math notranslate nohighlight">\(\overline Q^{(k-1)}\)</span> to get <span class="math notranslate nohighlight">\(W=A\overline Q^{(k-1)}\)</span>.</p></li>
+<li><p>Obtain the QR factorization of <span class="math notranslate nohighlight">\(W=\overline Q^{(k)}R^{(k)}\)</span>.</p></li>
+<li><p>Record <span class="math notranslate nohighlight">\(A^{(k)}=(\overline Q^{(k)})^T A \overline Q^{(k)}\)</span>.</p></li>
+</ul>
+</li>
+</ol>
+<p>Output: A sequence of orthogonal matrices <span class="math notranslate nohighlight">\(\overline Q^{(0)},\overline Q^{(1)},\cdots\)</span>, where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\overline Q^{(k)}\to
+\begin{pmatrix}
+|&amp; |&amp; &amp; |\\
+k_1 \vec x_1 &amp; k_2 \vec x_2 &amp;\cdots &amp;k_n \vec x_n\\
+|&amp; |&amp; &amp; |
+\end{pmatrix}
+\qquad\text{as }\ k\to \infty.
+\end{split}\]</div>
+<p>Now we are going to show that Algorithm 8 (Simultaneous Iteration) is equivalent to the QR method we discussed earlier. But to make the two methods comparable, we firstly modify some details in the original QR method.</p>
+</section>
+</section>
+<section id="algorithm-9-qr-method-a-variation">
+<h3>Algorithm 9 (QR Method, a variation)<a class="headerlink" href="#algorithm-9-qr-method-a-variation" title="Permalink to this headline">#</a></h3>
+<p>Goal: Finding all eigenvalues of a real symmetric matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<ol class="simple">
+<li><p>Initilization <span class="math notranslate nohighlight">\(A^{(0)}_{QR}=A\)</span>.</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(k=1,2,\cdots\)</span>, repeat until convergence:</p>
+<ul class="simple">
+<li><p>Obtain the QR factorization of <span class="math notranslate nohighlight">\(A_{QR}^{(k-1)}=Q_{QR}^{(k)}R_{QR}^{(k)}\)</span>.</p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(A_{QR}^{(k)}=R_{QR}^{(k)}Q_{QR}^{(k)}\)</span>.</p></li>
+<li><p>Record <span class="math notranslate nohighlight">\(\overline Q_{QR}^{(k)}=Q_{QR}^{(1)}Q_{QR}^{(2)}\cdots Q_{QR}^{(k)}\)</span>.</p></li>
+<li><p>Record <span class="math notranslate nohighlight">\(\overline R_{QR}^{(k)}=R_{QR}^{(k)}R_{QR}^{(k-1)}\cdots R_{QR}^{(1)}\)</span>.</p></li>
+</ul>
+</li>
+</ol>
+<p>Output: A sequence of matrices <span class="math notranslate nohighlight">\(A^{(k)}\)</span> and <span class="math notranslate nohighlight">\(\overline Q^{(k)}\)</span>.</p>
+</section>
+<section id="the-equivalence-of-simultaneous-iteration-and-qr-method">
+<h3>The Equivalence of Simultaneous Iteration and QR Method<a class="headerlink" href="#the-equivalence-of-simultaneous-iteration-and-qr-method" title="Permalink to this headline">#</a></h3>
+<p><strong>(Theorem 2)</strong> <em>Algorithm 8 (Simultaneous Iteration)</em> and <em>Algorithm 9 (QR Method, a variation)</em> are equivalent. That is, for each <span class="math notranslate nohighlight">\(k\)</span>, the RHS represents Simultaneous Iteration, and the LHS represents QR Method are the same:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(A_{QR}^{(k)}=A^{(k)}\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline Q_{QR}^{(k)}=\overline Q^{(k)}\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline R_{QR}^{(k)}=\overline R^{(k)}\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(A^k=\overline Q_{QR}^{(k)}\overline R_{QR}^{(k)}=\overline Q^{(k)}\overline R^{(k)}\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\((\overline Q_{QR}^{(k)})^T A \overline Q_{QR}^{(k)}=(\overline Q^{(k)})^T A \overline Q^{(k)}\)</span>.</p></li>
+</ol>
+<p>The proof is very simple via induction. Just be careful about the notation. We ignore the proof here.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="iterative_methods_1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Iterative Methods for Linear Systems (1)</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chenxin Jiang<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
