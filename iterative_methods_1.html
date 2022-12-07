@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Iterative Methods for Solving Linear System (2)" href="iterative_methods_2.html" />
+    <link rel="next" title="Iterative Methods for Solving Linear Systems (2)" href="iterative_methods_2.html" />
     <link rel="prev" title="Welcome to the world of Numerical Analysis!" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -120,7 +120,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="iterative_methods_2.html">
-   Iterative Methods for Solving Linear System (2)
+   Iterative Methods for Solving Linear Systems (2)
   </a>
  </li>
  <li class="toctree-l1">
@@ -800,10 +800,11 @@ M\vec u_i=\lambda_i \vec u_i\qquad\forall i=1,\cdots,n.
 </section>
 <section id="strictly-dominant-diagonal-sdd-matrix">
 <h4>Strictly Dominant Diagonal (SDD) Matrix<a class="headerlink" href="#strictly-dominant-diagonal-sdd-matrix" title="Permalink to this headline">#</a></h4>
-<p>A matrix <span class="math notranslate nohighlight">\(A=(a_{ij})_{1\leq i,j\leq n}\in M_{n\times n}(\mathbb C)\)</span> is strictly dominant diagonal (SDD) if
-$<span class="math notranslate nohighlight">\(
+<p>A matrix <span class="math notranslate nohighlight">\(A=(a_{ij})_{1\leq i,j\leq n}\in M_{n\times n}(\mathbb C)\)</span> is strictly dominant diagonal (SDD) if</p>
+<div class="math notranslate nohighlight">
+\[
 \mid a_{ii}\mid  &gt; \sum_{j=1,j\neq i}^n \mid a_{ij}\mid ,\qquad \forall i=1,\cdots,n.
-\)</span>$</p>
+\]</div>
 <p>Obviously, an SDD matrix <span class="math notranslate nohighlight">\(A\)</span> must be non-singular. A quick proof is as follows.</p>
 <p>By Theorem 1, all eigenvalues of <span class="math notranslate nohighlight">\(A\)</span> satisfy</p>
 <div class="math notranslate nohighlight">
@@ -832,11 +833,12 @@ A=N-(N-A)=N-P.
 <p>There are many possible choices of <span class="math notranslate nohighlight">\(N\)</span>. Here I will introduce three most popular choices, making up three common iterative methods to solve large linear system: Jacobi mathod, Gauss-Seidal method, and SOR method.</p>
 <section id="jacobi-method">
 <h3>Jacobi Method<a class="headerlink" href="#jacobi-method" title="Permalink to this headline">#</a></h3>
-<p>Jacobi Method is the simplest and the most intuitive. We choose
-$<span class="math notranslate nohighlight">\(
+<p>Jacobi Method is the simplest and the most intuitive. We choose</p>
+<div class="math notranslate nohighlight">
+\[
 N=D,
-\)</span><span class="math notranslate nohighlight">\(
-where matrix \)</span>D<span class="math notranslate nohighlight">\( is a diagonal component of \)</span>A$.</p>
+\]</div>
+<p>where matrix <span class="math notranslate nohighlight">\(D\)</span> is a diagonal component of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>Therefore, we split <span class="math notranslate nohighlight">\(A=N-P=D-(D-A)\)</span>, and get an iterative scheme as</p>
 <div class="math notranslate nohighlight">
 \[
@@ -987,13 +989,14 @@ D\vec{x}^{n+1}&amp;=(D-A)\vec{x}^n+\vec{f}\\
 \[
 x_i^{*}=-\frac{1}{a_{ii}}\sum_{j=1,j\neq i}^n a_{ij} x_j^* + \frac{1}{a_{ii}} f_i,\qquad i=1,\cdots,n.\tag{9}
 \]</div>
-<p>By <span class="math notranslate nohighlight">\((8)-(9)\)</span>, we have
-$<span class="math notranslate nohighlight">\(
+<p>By <span class="math notranslate nohighlight">\((8)-(9)\)</span>, we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{align*}
 e_i^{n+1}&amp;=-\frac{1}{a_{ii}}\sum_{j=1,j\neq i}^n a_{ij} e_j^n\\
 ⇒\mid e_i^{n+1} \mid&amp;&lt;\sum_{j=1,j\neq i}^n \frac{\mid a_{ij}\mid}{\mid a_{ii}\mid} \mid e_j^n\mid \leq \sum_{j=1,j\neq i}^n \frac{\mid a_{ij}\mid}{\mid a_{ii}\mid} \|\vec e^n\|_{∞},
 \end{align*}
-\)</span>$</p>
+\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\( \|\vec e^n\|_{∞}=\max_j \{\mid e_j^n\mid\}\)</span>.</p>
 <p>Note that because <span class="math notranslate nohighlight">\(A\)</span> is SDD,</p>
 <div class="math notranslate nohighlight">
@@ -1140,15 +1143,16 @@ A=\begin{pmatrix}
 \end{pmatrix}
 =N-P,
 \end{split}\]</div>
-<p>then we have
-$<span class="math notranslate nohighlight">\(
+<p>then we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 M=N^{-1}P=
 \begin{pmatrix}
 0 &amp; 2/5 &amp; -3/5\\
 0 &amp; 2/15 &amp; -14/45\\
 -1/21 &amp; 1/63 &amp; 1/7\\
 \end{pmatrix},
-\)</span>$</p>
+\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\rho(M)=0.205&lt;1\)</span>, so Gauss-Seidal must converge.</p>
 <p>Similar to Theorem 2 in Jacobi method, instead of studying <span class="math notranslate nohighlight">\(\rho(M)\)</span>, we could derive the convergence directly by special matrix property of <span class="math notranslate nohighlight">\(A\)</span> (Theorem 3).</p>
 <section id="theorem-3">
@@ -1233,18 +1237,20 @@ $<span class="math notranslate nohighlight">\(
 &amp;\vec x^{k+1} =\vec x^{k} + \omega (\vec y^{k+1}-\vec x^{k})
 \end{align*}
 \)</span>$</p>
-<p>Then <span class="math notranslate nohighlight">\(\vec y^{k+1}=\frac{1}{\omega}(\vec x^{k+1}+(\omega-1)\vec x^{k})\)</span>, and
-$<span class="math notranslate nohighlight">\(
+<p>Then <span class="math notranslate nohighlight">\(\vec y^{k+1}=\frac{1}{\omega}(\vec x^{k+1}+(\omega-1)\vec x^{k})\)</span>, and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{align*}
 &amp;L\vec x^{k+1}+ \frac{1}{\omega}D\vec (\vec x^{k+1}+(\omega-1)\vec x^{k})+ U\vec x^{k} =\vec f\\
 &amp;\implies (L+\frac{1}{\omega}D) \vec x^{k+1} = [\frac{1}{\omega}D-(D+U)] \vec x^{k} +\vec f.
 \end{align*}
-\)</span>$</p>
-<p>Actually, SOR Method is similar to G-S method. We choose
-$<span class="math notranslate nohighlight">\(
+\end{split}\]</div>
+<p>Actually, SOR Method is similar to G-S method. We choose</p>
+<div class="math notranslate nohighlight">
+\[
 N=L+\frac{1}{\omega}D.
-\)</span><span class="math notranslate nohighlight">\(
-When \)</span>\omega=1$, SOR degenerates to G-S method.</p>
+\]</div>
+<p>When <span class="math notranslate nohighlight">\(\omega=1\)</span>, SOR degenerates to G-S method.</p>
 <p>Remark: any matrix <span class="math notranslate nohighlight">\(A\)</span> can be splitted into</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1440,11 +1446,16 @@ det(M_{\omega})&amp;=det[(D+\omega L)^{-1}((1-\omega)D-\omega U))]\\
 &amp;det\{\lambda(D+\omega L)^{-1} [(D+\omega L)-\frac{1}{\lambda}((1-\omega)D-\omega U)]\}=0
 \end{align*}
 \end{split}\]</div>
-<p>Note that <span class="math notranslate nohighlight">\(\lambda\neq 0\)</span>, <span class="math notranslate nohighlight">\(det(D+\omega L)\neq 0\)</span>, so
-$<span class="math notranslate nohighlight">\(
+<p>Note that <span class="math notranslate nohighlight">\(\lambda\neq 0\)</span>, <span class="math notranslate nohighlight">\(det(D+\omega L)\neq 0\)</span>, so</p>
+<div class="math notranslate nohighlight">
+\[
 det(C)=det[(D+\omega L)-\frac{1}{\lambda}((1-\omega)D-\omega U)]=0.
-\)</span>$</p>
-<p>Since <span class="math notranslate nohighlight">\(\omega(1-\frac{1}{|\lambda|})\leq 1-\frac{1}{|\lambda|}\)</span>, we have <span class="math notranslate nohighlight">\(1-\frac{1}{|\lambda|}(1-\omega)\geq \omega \tag{15}\)</span></p>
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(\omega(1-\frac{1}{|\lambda|})\leq 1-\frac{1}{|\lambda|}\)</span>, we have</p>
+<div class="math notranslate nohighlight">
+\[
+1-\frac{1}{|\lambda|}(1-\omega)\geq \omega \tag{15}
+\]</div>
 <p>We write <span class="math notranslate nohighlight">\(C=(c_{ij})\)</span> and <span class="math notranslate nohighlight">\(A=(a_{ij})\)</span>, then for each <span class="math notranslate nohighlight">\(1\leq i\leq n\)</span>, the diagonal part</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1472,9 +1483,9 @@ det(C)=det[(D+\omega L)-\frac{1}{\lambda}((1-\omega)D-\omega U)]=0.
 <div><p>Let <span class="math notranslate nohighlight">\(A=L+D+U\)</span>. If the eigenvalues of <span class="math notranslate nohighlight">\(\alpha D^{-1}L+\frac{1}{\alpha}D^{-1}U\ (\alpha\neq 0)\)</span> are independent of <span class="math notranslate nohighlight">\(\alpha\)</span>, then matrix <span class="math notranslate nohighlight">\(A\)</span> is said to be consistently ordered.</p>
 </div></blockquote>
 <p>Examples of consistently ordered matrix:</p>
-<ul>
-<li><div class="math notranslate nohighlight">
-\[\begin{split}A=
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A=
 \begin{pmatrix}
 10 &amp; 1\\
 1 &amp; 10\\
@@ -1484,19 +1495,21 @@ det(C)=det[(D+\omega L)-\frac{1}{\lambda}((1-\omega)D-\omega U)]=0.
 -\frac{\alpha}{10} &amp; 0\\
 \end{pmatrix}
 \end{split}\]</div>
-</li>
-</ul>
 <p>Char. poly: <span class="math notranslate nohighlight">\(\lambda^2-\frac{1}{100}=0\implies \lambda=\pm \frac{1}{10}\)</span> are independent of <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
 <ul class="simple">
-<li><p>Tridiagonal matrix
-\begin{pmatrix}
-\lambda_1 &amp; * &amp;  &amp;  &amp; \</p></li>
-<li><p>&amp; \lambda_2 &amp; * &amp;  &amp; \
-&amp; * &amp; \lambda_3 &amp; \ddots &amp;\
-&amp;  &amp; * &amp; \ddots &amp; *\
-&amp;  &amp; &amp; * &amp; \lambda_n\
-\end{pmatrix} is consistently ordered.</p></li>
+<li><p>Tridiagonal matrix</p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+\lambda_1 &amp; * &amp;  &amp;  &amp; \\
+* &amp; \lambda_2 &amp; * &amp;  &amp; \\
+&amp; * &amp; \lambda_3 &amp; \ddots &amp;\\
+ &amp;  &amp; * &amp; \ddots &amp; *\\
+ &amp;  &amp; &amp; * &amp; \lambda_n\\
+\end{pmatrix} 
+\end{split}\]</div>
+<p>is consistently ordered.</p>
 </section>
 <section id="theorem-6-d-young">
 <h5>Theorem 6 (D. Young)<a class="headerlink" href="#theorem-6-d-young" title="Permalink to this headline">#</a></h5>
@@ -1514,8 +1527,9 @@ det(C)=det[(D+\omega L)-\frac{1}{\lambda}((1-\omega)D-\omega U)]=0.
 <li><p>Optimal parameter <span class="math notranslate nohighlight">\(\omega_{opt}\)</span> for fastest convergence is <span class="math notranslate nohighlight">\(\omega_{opt}=\frac{2}{1+\sqrt{1-\beta^2}}\)</span>, and <span class="math notranslate nohighlight">\(\rho(M_{SOR},\omega_{opt})=\omega_{opt}-1\)</span>.</p></li>
 </ol>
 <p>Example.</p>
-<p>Consider
-$<span class="math notranslate nohighlight">\(
+<p>Consider</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 A\vec x=
 \begin{pmatrix}
 10 &amp; 1\\
@@ -1530,7 +1544,7 @@ x_2 \\
 21 \\
 \end{pmatrix}
 =\vec f
-\)</span>$</p>
+\end{split}\]</div>
 <p>We know that</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(M_J=N_J^{-1}P_J\)</span> for Jacobi method has only real eigenvalues <span class="math notranslate nohighlight">\(\lambda=\pm \frac{1}{10}\)</span>;</p></li>
@@ -1574,13 +1588,14 @@ Then the iterative scheme <span class="math notranslate nohighlight">\(N\vec x^{
 \end{align*}
 \end{split}\]</div>
 <p>Note that <span class="math notranslate nohighlight">\(\lambda\neq 0\)</span>. (Otherwise, <span class="math notranslate nohighlight">\(A\vec x=0\)</span>, then <span class="math notranslate nohighlight">\(\vec x^*A\vec x=0\)</span>, contradicting to the fact that A is positive definite.)</p>
-<p>From <span class="math notranslate nohighlight">\((16)\)</span>, multiply <span class="math notranslate nohighlight">\(\vec x^*\)</span> on both sides:
-$<span class="math notranslate nohighlight">\(
+<p>From <span class="math notranslate nohighlight">\((16)\)</span>, multiply <span class="math notranslate nohighlight">\(\vec x^*\)</span> on both sides:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{align*}
 (1-\lambda)\vec x^*N\vec x&amp;=\vec x^*A\vec x \tag{17}\\
 \vec x^*N\vec x&amp;=\frac{1}{1-\lambda}\vec x^*A\vec x \tag{18}
 \end{align*}
-\)</span>$</p>
+\end{split}\]</div>
 <p>Take conjugate transpose on both sides of <span class="math notranslate nohighlight">\((17)\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1721,7 +1736,7 @@ N^*+N-A=[\frac{1}{\omega}D+U]+[\frac{1}{\omega}D+L]-A=(\frac{2}{\omega}-1)D.
     <a class='right-next' id="next-link" href="iterative_methods_2.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Iterative Methods for Solving Linear System (2)</p>
+        <p class="prev-next-title">Iterative Methods for Solving Linear Systems (2)</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

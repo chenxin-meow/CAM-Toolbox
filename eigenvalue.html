@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Iterative Methods for Linear Systems (1)" href="iterative_methods_1.html" />
+    <link rel="prev" title="Iterative Methods for Solving Linear Systems (2)" href="iterative_methods_2.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -107,14 +107,19 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to the world of Numerical Analysis!
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="iterative_methods_1.html">
-   Iterative Methods for Linear Systems (1)
+   Iterative Methods for Solving Linear Systems (1)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="iterative_methods_2.html">
+   Iterative Methods for Solving Linear Systems (2)
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -763,9 +768,9 @@ print(&#39;Tolerence = &#39;, sol_power[3])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The dominated eigenvalue = 10.2271
-The corresponding eigenvector =  [[-0.44562945  1.         -0.10978393]]
+The corresponding eigenvector =  [[-0.44562946  1.         -0.10978389]]
 Iteration =  48
-Tolerence =  [9.76744907e-08]
+Tolerence =  [8.27955535e-08]
 </pre></div>
 </div>
 </div>
@@ -787,10 +792,11 @@ A=Q
 \end{pmatrix}
 Q^{-1}.
 \end{split}\]</div>
-<p>The initial guess
-$<span class="math notranslate nohighlight">\(
+<p>The initial guess</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \vec x^0=a_1\vec x_1+\cdots+a_n\vec x_n=Q\begin{pmatrix}a_1\\ \vdots\\ a_n\end{pmatrix},\ a_1\neq 0.
-\)</span>$</p>
+\end{split}\]</div>
 <p>We consider the iterative scheme in the Power method.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -805,12 +811,13 @@ A^k\vec x^{(0)}&amp;=Q\begin{pmatrix}
 &amp;=a_1\lambda_1^k \vec x_1.
 \end{align*}
 \end{split}\]</div>
-<p>Then,
-$<span class="math notranslate nohighlight">\(
+<p>Then,</p>
+<div class="math notranslate nohighlight">
+\[
 \begin{align*}
 \vec x^{(k)}=\frac{A^k\vec x^{(0)}}{\|A^k\vec x^{(0)}\|_{\infty}}\to\frac{a_1\lambda_1^k}{|a_1||\lambda_1^k|\|\vec x_1\|_{\infty}}\vec x_1,
 \end{align*}
-\)</span>$</p>
+\]</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -846,10 +853,11 @@ J(\lambda_{i_j})=\begin{pmatrix}
 &amp; &amp; &amp; &amp;\lambda_{i_j}
 \end{pmatrix}.
 \end{split}\]</div>
-<p>The initial guess
-$<span class="math notranslate nohighlight">\(
+<p>The initial guess</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \vec x^0=a_1\vec x_1+\cdots+a_n\vec x_n=Q\begin{pmatrix}a_1\\ \vdots\\ a_n\end{pmatrix},\ a_1\neq 0.
-\)</span>$</p>
+\end{split}\]</div>
 <p>We consider the iterative scheme</p>
 <div class="math notranslate nohighlight">
 \[
@@ -982,9 +990,9 @@ print(&#39;Tolerence = &#39;, sol_inverse_power[3])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The smallest eigenvalue = 4.1830
-The corresponding eigenvector =  [[1.         0.59674018 0.12548192]]
-Iteration =  31
-Tolerence =  [7.34605576e-08]
+The corresponding eigenvector =  [[1.         0.59674018 0.1254819 ]]
+Iteration =  32
+Tolerence =  [6.3573685e-08]
 </pre></div>
 </div>
 </div>
@@ -1065,9 +1073,9 @@ print(&#39;Tolerence = &#39;, sol_inverse_power_shift[3])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The eigenvalue that closet to mu = 4.1830
-The corresponding eigenvector =  [[-1.         -0.59674017 -0.12548191]]
-Iteration =  20
-Tolerence =  [5.41022791e-08]
+The corresponding eigenvector =  [[1.         0.59674018 0.12548191]]
+Iteration =  19
+Tolerence =  [4.315394e-08]
 </pre></div>
 </div>
 </div>
@@ -1083,10 +1091,11 @@ Tolerence =  [5.41022791e-08]
 \vec x^{(k)}=
 \frac{a_1\lambda_1^k(\vec x_1+\sum_{j=2}^n\frac{a_j}{a_1}(\frac{\lambda_j}{\lambda_1})^k\vec x_j)}{\|a_1\lambda_1^k(\vec x_1+\sum_{j=2}^n\frac{a_j}{a_1}(\frac{\lambda_j}{\lambda_1})^k\vec x_j)\|_{\infty}}\to \frac{a_1\lambda_1^k\vec x_1}{\|a_1\lambda_1^k\vec x_1\|_{\infty}}\qquad\text{as }k\to \infty\\
 \end{split}\]</div>
-<p>Note that
-$<span class="math notranslate nohighlight">\(
+<p>Note that</p>
+<div class="math notranslate nohighlight">
+\[
 1&gt;|\frac{\lambda_2}{\lambda_1}|&gt;|\frac{\lambda_3}{\lambda_1}|&gt;\cdots&gt;|\frac{\lambda_n}{\lambda_1}|,
-\)</span>$</p>
+\]</div>
 <p>The convergence rate depends on <span class="math notranslate nohighlight">\(\eta:=|\frac{\lambda_2}{\lambda_1}|\)</span>.</p>
 <p>Now let’s look into three Power Methods mentioned above. Suppose <span class="math notranslate nohighlight">\(A\)</span> has eigenvalues <span class="math notranslate nohighlight">\(|\lambda_1|&gt;|\lambda_2|&gt;\cdots |\lambda_n|\)</span> with corresponding eigenvectors <span class="math notranslate nohighlight">\(\vec v_1, \vec v_2, \cdots, \vec v_n\)</span>.</p>
 <ol class="simple">
@@ -1196,7 +1205,7 @@ print(&#39;Tolerence = &#39;, sol_RQI[3])
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The eigenvalue that closet to mu = 4.1830
 The corresponding eigenvector =  [[-0.85378309 -0.50948667 -0.10713433]]
 Iteration =  4
-Tolerence =  [[1.9095836e-13]]
+Tolerence =  [[5.32907052e-14]]
 </pre></div>
 </div>
 </div>
@@ -1311,8 +1320,10 @@ A=QR.
 <ol class="simple">
 <li><p>Apply Gram-Schimidt process to obtain an orthonormal set <span class="math notranslate nohighlight">\(\{\vec q_1,\vec q_2,\cdots,\vec q_n\}\)</span>.</p></li>
 <li><p>Compute <span class="math notranslate nohighlight">\(\alpha_{jk}=\vec q_j^T \vec a_k\)</span> for <span class="math notranslate nohighlight">\(j=1,\cdots,k\)</span>; or simply use <span class="math notranslate nohighlight">\(R=Q^TA\)</span>.</p></li>
-<li><p>Construct QR Factorization
-$<span class="math notranslate nohighlight">\(
+<li><p>Construct QR Factorization</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 A=QR=
 \begin{pmatrix}
 |&amp; |&amp; &amp; |\\
@@ -1321,12 +1332,11 @@ A=QR=
 \end{pmatrix}
 \begin{pmatrix}
 \alpha_{11}&amp; \alpha_{12}&amp;\cdots &amp; \alpha_{1n}\\
-&amp; \alpha_{22} &amp;\cdots &amp;\alpha_{2n}\\
-&amp; &amp; \ddots &amp;\vdots\\
+ &amp; \alpha_{22} &amp;\cdots &amp;\alpha_{2n}\\
+ &amp; &amp; \ddots &amp;\vdots\\
 &amp; &amp; &amp; \alpha_{nn} 
 \end{pmatrix}.
-\)</span>$</p></li>
-</ol>
+\end{split}\]</div>
 </section>
 <section id="id4">
 <h4>Code demo<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
@@ -1591,7 +1601,7 @@ k_1 \vec x_1 &amp; k_2 \vec x_2 &amp;\cdots &amp;k_n \vec x_n\\
 \vec x_1^{(0)} &amp; \vec x_2^{(0)} &amp;\cdots &amp;\vec x_n^{(0)}\\
 |&amp; |&amp; &amp; |
 \end{pmatrix}
-\in M_{n\times n} (\mathbb C)\)</span>.</p>
+\in M_{n\times n} (\mathbb C)\)</span></p>
 <ol class="simple">
 <li><p>Obtain the QR factorization of <span class="math notranslate nohighlight">\(X^{(0)}=\overline Q^{(0)}R^{(0)}\)</span>.</p></li>
 <li><p>For <span class="math notranslate nohighlight">\(k=1,2,\cdots\)</span>, repeat until convergence:</p>
@@ -1674,11 +1684,11 @@ k_1 \vec x_1 &amp; k_2 \vec x_2 &amp;\cdots &amp;k_n \vec x_n\\
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="iterative_methods_1.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="iterative_methods_2.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Iterative Methods for Linear Systems (1)</p>
+            <p class="prev-next-title">Iterative Methods for Solving Linear Systems (2)</p>
         </div>
     </a>
 </div>
