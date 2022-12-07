@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Numerical Methods &#8212; Numerical Methods</title>
+    <title>Numerical Analysis &#8212; Numerical Analysis</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -97,7 +97,7 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Numerical Methods</h1>
+      <h1 class="site-logo" id="site-title">Numerical Analysis</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -115,13 +115,13 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="markdown.html">
-   Markdown Files
+  <a class="reference internal" href="iterative_methods_1.html">
+   Iterative Methods for Linear Systems (1)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Iterative_Method.html">
-   A general framework of Iterative Method
+  <a class="reference internal" href="eigenvalue.html">
+   Eigenvalue Problems
   </a>
  </li>
 </ul>
@@ -197,7 +197,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://chenxin-meow.github.io/numerical-methods"
+        <a href="https://chenxin-meow.github.io/Numerical-Analysis/"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -214,7 +214,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://chenxin-meow.github.io/numerical-methods/issues/new?title=Issue%20on%20page%20%2FREADME.html&body=Your%20issue%20content%20here."
+        <a href="https://chenxin-meow.github.io/Numerical-Analysis//issues/new?title=Issue%20on%20page%20%2FREADME.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -305,6 +305,47 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#topics">
    Topics
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving-linear-systems">
+     Solving Linear Systems
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#direct-methods-for-solving-linear-systems">
+       Direct Methods for Solving Linear Systems
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#iterative-methods-for-solving-linear-systems-1">
+       Iterative Methods for Solving Linear Systems (1)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#iterative-method-for-solving-linear-systems-2">
+       Iterative Method for Solving Linear Systems (2)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eigenvalue-problems">
+     Eigenvalue Problems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving-differential-equations">
+     Solving Differential Equations
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#numerical-spectral-method">
+       Numerical Spectral Method
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -315,7 +356,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Numerical Methods</h1>
+                <h1>Numerical Analysis</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -329,6 +370,47 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#topics">
    Topics
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving-linear-systems">
+     Solving Linear Systems
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#direct-methods-for-solving-linear-systems">
+       Direct Methods for Solving Linear Systems
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#iterative-methods-for-solving-linear-systems-1">
+       Iterative Methods for Solving Linear Systems (1)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#iterative-method-for-solving-linear-systems-2">
+       Iterative Method for Solving Linear Systems (2)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eigenvalue-problems">
+     Eigenvalue Problems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving-differential-equations">
+     Solving Differential Equations
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#numerical-spectral-method">
+       Numerical Spectral Method
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -340,36 +422,61 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="numerical-methods">
-<h1>Numerical Methods<a class="headerlink" href="#numerical-methods" title="Permalink to this headline">#</a></h1>
-<p>General numerical methods in computational and applied mathematics</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="numerical-analysis">
+<h1>Numerical Analysis<a class="headerlink" href="#numerical-analysis" title="Permalink to this headline">#</a></h1>
+<p>Numerical methods in computational and applied mathematics</p>
 <section id="topics">
 <h2>Topics<a class="headerlink" href="#topics" title="Permalink to this headline">#</a></h2>
+<section id="solving-linear-systems">
+<h3>Solving Linear Systems<a class="headerlink" href="#solving-linear-systems" title="Permalink to this headline">#</a></h3>
+<section id="direct-methods-for-solving-linear-systems">
+<h4>Direct Methods for Solving Linear Systems<a class="headerlink" href="#direct-methods-for-solving-linear-systems" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
-<li><p>Numerical Spectral Method</p>
-<ul>
-<li><p>Analytic spectral method</p></li>
+<li><p>Gaussian Elimination</p></li>
+<li><p>LU Decomposition</p></li>
+<li><p>Cholesky Decomposition</p></li>
+</ul>
+</section>
+<section id="iterative-methods-for-solving-linear-systems-1">
+<h4>Iterative Methods for Solving Linear Systems (1)<a class="headerlink" href="#iterative-methods-for-solving-linear-systems-1" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Matrix Splitting</p></li>
+<li><p>Jacobi Method</p></li>
+<li><p>Gauss-Seidal Method</p></li>
+<li><p>SOR Method</p></li>
+</ul>
+</section>
+<section id="iterative-method-for-solving-linear-systems-2">
+<h4>Iterative Method for Solving Linear Systems (2)<a class="headerlink" href="#iterative-method-for-solving-linear-systems-2" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Energy Minimization</p></li>
+<li><p>Gradient Descent Method</p></li>
+<li><p>Steepest Descent Method</p></li>
+<li><p>Conjugate Gradient Method</p></li>
+</ul>
+</section>
+</section>
+<section id="eigenvalue-problems">
+<h3>Eigenvalue Problems<a class="headerlink" href="#eigenvalue-problems" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Power Method</p></li>
+<li><p>Rayleigh Quotient Iteration</p></li>
+<li><p>QR Method</p></li>
+<li><p>Simultaneous Iteration</p></li>
+</ul>
+</section>
+<section id="solving-differential-equations">
+<h3>Solving Differential Equations<a class="headerlink" href="#solving-differential-equations" title="Permalink to this headline">#</a></h3>
+<section id="numerical-spectral-method">
+<h4>Numerical Spectral Method<a class="headerlink" href="#numerical-spectral-method" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Analytic Spectral Method</p></li>
 <li><p>Fourier Transform</p></li>
 <li><p>Discrete Fourier Transform</p></li>
 <li><p>Fast Fourier Transform</p></li>
 </ul>
-</li>
-<li><p>Iterative Method for Linear System</p>
-<ul>
-<li><p>Jacobi method</p></li>
-<li><p>Gauss-Seidal method</p></li>
-<li><p>SOR method</p></li>
-<li><p>General framework</p></li>
-</ul>
-</li>
-<li><p>Eigenvalue Problem</p>
-<ul>
-<li><p>Power method</p></li>
-<li><p>QR method</p></li>
-</ul>
-</li>
-<li><p>Energy Minimization Problem</p></li>
-</ul>
+</section>
+</section>
 </section>
 </section>
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Eigenvalue Problem
+# # Eigenvalue Problems
 
 # Given a linear transformation $f(x)=Ax$ mapping from $\mathbb C^n$ to $\mathbb C^m$, we are always interested in studying the eigenvalues and eigenvectors of $A$. This helps us to understand the characteristics of linear transformation. Moreover, the convergence analysis of iterative methods for solving linear system depends on the spectral radius of specific matrices, which also requires us to study the eigenvalues and eigenvectors. However, the analytical scheme to find eigenvalues needs to solve an $n$-th order polynomial characteristic equation. The computation is difficult when $A$ is a really large matrix. Therefore, applied mathematicians invent more sophisticated methods to solve the problem numerically. 
 # 

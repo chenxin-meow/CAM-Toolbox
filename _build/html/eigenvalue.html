@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Eigenvalue Problem &#8212; Numerical Methods</title>
+    <title>Eigenvalue Problems &#8212; Numerical Analysis</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -100,7 +100,7 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Numerical Methods</h1>
+      <h1 class="site-logo" id="site-title">Numerical Analysis</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -124,7 +124,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Eigenvalue Problem
+   Eigenvalue Problems
   </a>
  </li>
 </ul>
@@ -200,7 +200,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://chenxin-meow.github.io/numerical-methods"
+        <a href="https://chenxin-meow.github.io/Numerical-Analysis/"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -217,7 +217,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://chenxin-meow.github.io/numerical-methods/issues/new?title=Issue%20on%20page%20%2Feigenvalue.html&body=Your%20issue%20content%20here."
+        <a href="https://chenxin-meow.github.io/Numerical-Analysis//issues/new?title=Issue%20on%20page%20%2Feigenvalue.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -471,7 +471,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Eigenvalue Problem</h1>
+                <h1>Eigenvalue Problems</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -649,8 +649,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="eigenvalue-problem">
-<h1>Eigenvalue Problem<a class="headerlink" href="#eigenvalue-problem" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="eigenvalue-problems">
+<h1>Eigenvalue Problems<a class="headerlink" href="#eigenvalue-problems" title="Permalink to this headline">#</a></h1>
 <p>Given a linear transformation <span class="math notranslate nohighlight">\(f(x)=Ax\)</span> mapping from <span class="math notranslate nohighlight">\(\mathbb C^n\)</span> to <span class="math notranslate nohighlight">\(\mathbb C^m\)</span>, we are always interested in studying the eigenvalues and eigenvectors of <span class="math notranslate nohighlight">\(A\)</span>. This helps us to understand the characteristics of linear transformation. Moreover, the convergence analysis of iterative methods for solving linear system depends on the spectral radius of specific matrices, which also requires us to study the eigenvalues and eigenvectors. However, the analytical scheme to find eigenvalues needs to solve an <span class="math notranslate nohighlight">\(n\)</span>-th order polynomial characteristic equation. The computation is difficult when <span class="math notranslate nohighlight">\(A\)</span> is a really large matrix. Therefore, applied mathematicians invent more sophisticated methods to solve the problem numerically.</p>
 <p>In this chapter, we will discuss two methods to solve the eigenvalue problem: Power method and QR method. Power method finds the largest dominant eigenvalue and its corresponding eigenvector, whereas QR method can find all the eigenvalues at the same time. These two methods, although look in huge difference, are the same from a more general perspective. We will discuss the relationship between Power method and QR method as well.</p>
 <section id="power-method">
@@ -768,9 +768,9 @@ print(&#39;Tolerence = &#39;, sol_power[3])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The dominated eigenvalue = 10.2271
-The corresponding eigenvector =  [[ 0.44562945 -1.          0.10978393]]
-Iteration =  49
-Tolerence =  [7.30375351e-08]
+The corresponding eigenvector =  [[-0.44562945  1.         -0.10978393]]
+Iteration =  48
+Tolerence =  [9.76744907e-08]
 </pre></div>
 </div>
 </div>
@@ -987,9 +987,9 @@ print(&#39;Tolerence = &#39;, sol_inverse_power[3])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The smallest eigenvalue = 4.1830
-The corresponding eigenvector =  [[1.         0.59674018 0.1254819 ]]
-Iteration =  27
-Tolerence =  [6.55716184e-08]
+The corresponding eigenvector =  [[1.         0.59674018 0.12548192]]
+Iteration =  31
+Tolerence =  [7.34605576e-08]
 </pre></div>
 </div>
 </div>
@@ -1070,9 +1070,9 @@ print(&#39;Tolerence = &#39;, sol_inverse_power_shift[3])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The eigenvalue that closet to mu = 4.1830
-The corresponding eigenvector =  [[1.         0.59674017 0.12548191]]
-Iteration =  19
-Tolerence =  [5.95138445e-08]
+The corresponding eigenvector =  [[-1.         -0.59674017 -0.12548191]]
+Iteration =  20
+Tolerence =  [5.41022791e-08]
 </pre></div>
 </div>
 </div>
@@ -1199,9 +1199,9 @@ print(&#39;Tolerence = &#39;, sol_RQI[3])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The eigenvalue that closet to mu = 4.1830
-The corresponding eigenvector =  [[0.85378309 0.50948667 0.10713433]]
-Iteration =  3
-Tolerence =  [[2.73761724e-09]]
+The corresponding eigenvector =  [[-0.85378309 -0.50948667 -0.10713433]]
+Iteration =  4
+Tolerence =  [[1.9095836e-13]]
 </pre></div>
 </div>
 </div>
