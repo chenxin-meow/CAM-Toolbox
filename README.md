@@ -1,24 +1,43 @@
-# Numerical Methods
-General numerical methods in computational and applied mathematics
+# Numerical Analysis
+
+Numerical methods in computational and applied mathematics
 
 ## Topics
 
-* Numerical Spectral Method
-  * Analytic spectral method
-  * Fourier Transform
-  * Discrete Fourier Transform
-  * Fast Fourier Transform
+### Solving Differential Equations
 
-* Iterative Method for Linear System
-  * Jacobi method
-  * Gauss-Seidal method
-  * SOR method
-  * General framework
+#### Numerical Spectral Method
+* Analytic Spectral Method
+* Fourier Transform
+* Discrete Fourier Transform
+* Fast Fourier Transform
+
+### Solving Linear Systems
+
+#### Direct Methods for Solving Linear Systems
+
+* Gaussian Elimination
+* LU Decomposition
+* Cholesky Decomposition
+
+#### Iterative Methods for Solving Linear Systems (1)
+* Splitting Method
+* Jacobi Method
+* Gauss-Seidal Method
+* SOR Method
+
+#### Iterative Method for Solving Linear Systems (2)
+* Energy Minimization 
+* Gradient Descent Method
+* Steepest Descent Method
+* Conjugate Gradient Method
   
-* Eigenvalue Problem
-  * Power method
-  * QR method
+### Eigenvalue Problems
+* Power method
+* Rayleigh Quotient Iteration
+* QR method
+* Simultaneous Iteration
   
-* Energy Minimization Problem
+ 
   
 
