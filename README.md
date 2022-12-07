@@ -4,24 +4,15 @@ Numerical methods in computational and applied mathematics
 
 ## Topics
 
-### Solving Differential Equations
-
-#### Numerical Spectral Method
-* Analytic Spectral Method
-* Fourier Transform
-* Discrete Fourier Transform
-* Fast Fourier Transform
-
 ### Solving Linear Systems
 
 #### Direct Methods for Solving Linear Systems
-
 * Gaussian Elimination
 * LU Decomposition
 * Cholesky Decomposition
 
 #### Iterative Methods for Solving Linear Systems (1)
-* Splitting Method
+* Matrix Splitting
 * Jacobi Method
 * Gauss-Seidal Method
 * SOR Method
@@ -37,6 +28,16 @@ Numerical methods in computational and applied mathematics
 * Rayleigh Quotient Iteration
 * QR method
 * Simultaneous Iteration
+
+
+### Solving Differential Equations
+
+#### Numerical Spectral Method
+* Analytic Spectral Method
+* Fourier Transform
+* Discrete Fourier Transform
+* Fast Fourier Transform
+
   
  
   
