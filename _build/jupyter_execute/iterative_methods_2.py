@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Iterative Methods for Solving Linear System (2)
+# # Iterative Methods for Solving Linear Systems (2)
 # 
 # 
 # We have introduced 3 iterative methods (Jacobi, Gauss-Seidal, SOR) to solve linear system $A\vec x=\vec b$ by **splitting** $A$ into $A=N-P$, resulting an iterative scheme
