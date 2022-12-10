@@ -355,17 +355,17 @@ title="Print to PDF"
      Code demo
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#convergence-of-jacobi">
-   Convergence of Jacobi
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#theorem-2">
-     Theorem 2
+    <a class="reference internal nav-link" href="#convergence-of-jacobi">
+     Convergence of Jacobi
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#theorem-2">
+       Theorem 2
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -537,17 +537,17 @@ title="Print to PDF"
      Code demo
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#convergence-of-jacobi">
-   Convergence of Jacobi
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#theorem-2">
-     Theorem 2
+    <a class="reference internal nav-link" href="#convergence-of-jacobi">
+     Convergence of Jacobi
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#theorem-2">
+       Theorem 2
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -927,9 +927,8 @@ pprint(sol_jacobi)
 </div>
 <p>From the code above, after 13 iterations, Jacobi converges under the tolerence threshold <span class="math notranslate nohighlight">\(10^{-7}\)</span>, giving result <span class="math notranslate nohighlight">\(\vec x^{13}=(0.186,0.331,-0.423)^T\)</span>.</p>
 </section>
-</section>
 <section id="convergence-of-jacobi">
-<h2>Convergence of Jacobi<a class="headerlink" href="#convergence-of-jacobi" title="Permalink to this headline">#</a></h2>
+<h3>Convergence of Jacobi<a class="headerlink" href="#convergence-of-jacobi" title="Permalink to this headline">#</a></h3>
 <p>To analyse the convergence of Jacobi method, we should study the spectral radius of</p>
 <div class="math notranslate nohighlight">
 \[
@@ -967,7 +966,7 @@ M=N^{-1}P=
 <p>where <span class="math notranslate nohighlight">\(\rho(M)=0.267&lt;1\)</span>, so Jacobi must converge.</p>
 <p>Instead of studying <span class="math notranslate nohighlight">\(\rho(M)\)</span>, we could derive the convergence directly by special matrix property of <span class="math notranslate nohighlight">\(A\)</span> (Theorem 2).</p>
 <section id="theorem-2">
-<h3>Theorem 2<a class="headerlink" href="#theorem-2" title="Permalink to this headline">#</a></h3>
+<h4>Theorem 2<a class="headerlink" href="#theorem-2" title="Permalink to this headline">#</a></h4>
 <blockquote>
 <div><p>If A is SDD, then Jacobi method to solve <span class="math notranslate nohighlight">\(A\vec x=\vec f\)</span> converges.</p>
 </div></blockquote>
@@ -1011,6 +1010,7 @@ r=\max_i\{\sum_{j=1,j\neq i}^n \frac{\mid a_{ij}\mid}{\mid a_{ii}\mid}\}&lt;1.
 \|\vec e^{n+1}\|_{∞}&lt;r\|\vec e^n\|_{∞}.\tag{10}
 \]</div>
 <p>By <span class="math notranslate nohighlight">\((10)\)</span>, and <span class="math notranslate nohighlight">\(r&lt;1\)</span>, we know that <span class="math notranslate nohighlight">\(\vec e^n\to 0\)</span> as <span class="math notranslate nohighlight">\(n\to ∞\)</span>. Jacobi method converges.</p>
+</section>
 </section>
 </section>
 <section id="gauss-seidal-method">
