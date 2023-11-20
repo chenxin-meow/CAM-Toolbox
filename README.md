@@ -2,7 +2,7 @@
 
 Numerical methods in computational and applied mathematics
 
-Jupyter book online: https://chenxin-meow.github.io/Numerical-Analysis/
+Jupyter book online: https://chexjiang.github.io/Numerical-Analysis/
 
 ## Topics
 
